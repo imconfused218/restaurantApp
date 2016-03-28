@@ -1,4 +1,4 @@
-angular.module('restaurantApp.controllers', ['restaurantApp.services'])
+angular.module('restaurantApp.controllers', ['restaurantApp.services', 'restaurantApp.directives'])
 
 .controller('AppCtrl', function() {
   // With the new view caching in Ionic, Controllers are only called
@@ -46,11 +46,7 @@ LogInCtrl.prototype.logMeIn = function () {
 };
 
 /////////////////////////////////// Orders Controller//////////////////////////////
-function OrdersCtrl () {
-  this.testData = [
-    { name: 'Order1'},
-    { name: 'Order2'},
-    { name: 'Order3'}
-  ];
+function OrdersCtrl (ordersService) {
+  this.ordersService = ordersService;
 }
 

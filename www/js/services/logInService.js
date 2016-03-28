@@ -5,7 +5,7 @@ function LogInService (apiService, $window) {
 	this.apiService = apiService;
 	this.$window = $window;
 
-	this.rootUrl = 'api/1/auth';
+	this.rootUrl = 'api/1/auth/';
 }
 
 /**
@@ -17,8 +17,8 @@ LogInService.prototype.logMeIn = function (logInInfo) {
 	var self = this;
 
 	return this.apiService.post(this.rootUrl, logInInfo).then(function(result){
-		self.apiService.setHeaders['Bearer'] = result.data.auth_token;
+		self.apiService.setHeaders['Bearer'] = result.auth_token;
 		self.$window.localStorage['setHeaders'] = JSON.stringify(self.apiService.setHeaders);
 		return result;
-	})
+	});
 };

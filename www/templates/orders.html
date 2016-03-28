@@ -4,17 +4,23 @@
     	<div class='col col-33 ordersListContainer'>
   			<ion-list>
   				<ion-item class='item item-divider'>
-  					Open Orders
+  					Needs Confirmation!
   				</ion-item>
-  				<ion-item ng-repeat='order in orders.testData'>
-  					{{order.name}}
+  				<ion-item ng-repeat='order in orders.ordersService.orders.unconfirmed'>
+  					<order-box></order-box>
   				</ion-item>
   				<ion-item class='item item-divider'>
-  					Completed Orders
+  					Cooking!
   				</ion-item>
-  				<ion-item ng-repeat='order in orders.testData'>
-  					{{order.name}}
+  				<ion-item ng-repeat='order in orders.ordersService.orders.confirmed'>
+  					<order-box></order-box>
   				</ion-item>
+          <ion-item class='item item-divider'>
+            Ready for pick up!
+          </ion-item>
+          <ion-item ng-repeat='order in orders.ordersService.orders.ready'>
+            <order-box></order-box>
+          </ion-item>
   			</ion-list>
     	</div>
     	<div class='col col-67'>
