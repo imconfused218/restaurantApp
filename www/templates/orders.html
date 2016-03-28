@@ -1,0 +1,27 @@
+<ion-view view-title="Orders">
+  <ion-content>
+    <div class='row'>
+    	<div class='col col-33 ordersListContainer'>
+  			<ion-list>
+  				<ion-item class='item item-divider'>
+  					Open Orders
+  				</ion-item>
+  				<ion-item ng-repeat='order in orders.testData'>
+  					{{order.name}}
+  				</ion-item>
+  				<ion-item class='item item-divider'>
+  					Completed Orders
+  				</ion-item>
+  				<ion-item ng-repeat='order in orders.testData'>
+  					{{order.name}}
+  				</ion-item>
+  			</ion-list>
+    	</div>
+    	<div class='col col-67'>
+    		
+    	</div>
+    </div>
+  </ion-content>
+</ion-view>
+
+
