@@ -1,6 +1,6 @@
 
 
-angular.module('restaurantApp', ['ionic', 'restaurantApp.controllers'])
+angular.module('restaurantApp', ['ionic', 'restaurantApp.controllers', 'restaurantApp.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -36,7 +36,12 @@ angular.module('restaurantApp', ['ionic', 'restaurantApp.controllers'])
       views: {
         'menuContent': {
           templateUrl: 'templates/orders.html',
-          controller: 'ordersCtrl as orders'
+          controller: 'ordersCtrl as orders',
+          resolve : {
+            getInitialOrders : function(ordersService) {
+              return ordersService.getOrders();
+            }
+          }
         }
       }
     });

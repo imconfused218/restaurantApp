@@ -1,11 +1,10 @@
 angular.module('restaurantApp.services')
 	.service('ordersService', OrdersService);
 
-function OrdersService (apiService) {
+function OrdersService (apiService, logInService, $window) {
 	this.apiService = apiService;
-
-	this.restaurantId = 123456;
-	this.ordersUrl = '/menuMeOrders';
+	this.logInService = logInService;
+	this.$window = $window;
 
 	this.orders = {
 		'unconfirmed' : [
@@ -32,7 +31,11 @@ function OrdersService (apiService) {
  */
 OrdersService.prototype.getOrders = function () {
 	var self = this;
-	var url = ordersUrl + '/' + this.restaurantId + '/';
+
+	var place_id = JSON.parse(this.$window.localStorage.getItem('place_id')) || this.logInService.place_id || 5;
+
+	var url = 'foodcannon/api/1/place/' + place_id + '/orders/';
+
 	return this.apiService.get(url).then(function(data){
 		self.orders = data;
 		return data;
