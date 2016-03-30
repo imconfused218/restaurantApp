@@ -15,7 +15,143 @@
 
 /**************** Orders View *******************/
 
-.ordersListContainer {
-	background-color: #ddd;
+.ordersViewContainer {
+	height: 1000px;
+}
+
+.ordersTitle {
 	font-family: 'Open Sans', sans-serif;
+	font-size: 22px;
+
+}
+
+.restaurantProfileContainer {
+	margin-top: -10px;
+	margin-right: -5px;
+	width: 200px;
+	height: 120px;
+	background-color: hsla(178, 90%, 10%, 0.78);
+	border: solid 1px hsla(178, 90%, 10%, 1);
+	border-bottom-left-radius: 2em;
+}
+
+.restaurantImgContainer {
+	margin-top: 25px;
+	text-align: center;
+}
+
+.restaurantImgContainer img {
+	width: 150px;
+}
+
+.restaurantProfileName, .restaurantProfileStatus {
+	color: #222;
+  font-size: 28px;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  margin-top: 1em;
+}
+
+.restaurantStatus {
+	font-family: 'Open Sans', sans-serif;
+	padding-top: 2px;
+	color: hsla(122, 100%, 70%, 1);
+}
+
+.restaurantStatus i {
+	font-size: 24px;
+}
+
+.ordersListContainer {
+	margin-top: -5px;
+	margin-left: -5px;
+	background-color: #444;
+	font-family: 'Open Sans', sans-serif;
+	height: 1500px;
+}
+
+.orderInfoHeader {
+	margin-top: 5em;
+	text-align: center;
+}
+
+.orderNumber, .orderPickupTime {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 24px;
+	font-weight: 500;
+	margin-top: 30px;
+}
+
+.orderCustomerName {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 22px;
+	color: #444;
+	font-style: italic;
+	margin-top: 30px;
+}
+
+.itemInfoContainer {
+	margin: 40px 40px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.subItemInfo {
+	display: flex;
+}
+
+.itemThumbnail img{
+	width: 75px;
+	height: 75px;
+}
+
+.itemName {
+	margin-left: 20px;
+	padding-top: 20px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	color: #444;
+}
+
+.itemQuant {
+	margin-left: 15px;
+}
+
+.itemPrice {
+	padding-top: 20px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	color: #444;
+}
+
+
+.orderPriceDetails {
+	padding-right: 40px;
+}
+
+.orderSubtotal, .orderTax, .orderTotalPrice {
+	display: flex;
+	justify-content: space-between;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	padding-bottom: 10px;
+	color: #444;
+}
+
+.orderTotalPrice {
+	color: black;
+	font-size: 20px;
+	font-style: bold;
+	font-weight: 500;
+}
+
+.orderBtnContainer {
+	margin-top: 1em;
+	text-align: center;
+}
+
+.orderBtnContainer button {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 24px;
+	padding: 5px 20px;
 }

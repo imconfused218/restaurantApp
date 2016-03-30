@@ -48,5 +48,18 @@ LogInCtrl.prototype.logMeIn = function () {
 /////////////////////////////////// Orders Controller//////////////////////////////
 function OrdersCtrl (ordersService) {
   this.ordersService = ordersService;
+
+  this.orders = this.ordersService.orders;
+
+  this.selectedOrder = this.orders.unconfirmed[0] || this.orders.confirmed[0] || this.orders.ready[0] || {};
 }
+
+OrdersCtrl.prototype.selectOrder = function (order) {
+  this.selectedOrder = order;
+}
+
+OrdersCtrl.prototype.confirmOrder = function () {
+  this.ordersService.confirmOrder(this.selectedOrder);
+}
+
 

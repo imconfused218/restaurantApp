@@ -1,28 +1,17 @@
 angular.module('restaurantApp.services')
 	.service('ordersService', OrdersService);
 
-function OrdersService (apiService, logInService, $window) {
+function OrdersService (apiService, logInService, $window, $interval) {
 	this.apiService = apiService;
 	this.logInService = logInService;
 	this.$window = $window;
+	this.$interval = $interval;
 
-	this.orders = {
-		'unconfirmed' : [
-			{
-				id: 12345,
-				customerName: 'Herp Derpington',
-				pickUp: '6:30pm',
+	this.ordersUrl = '';
+	this.orders = {};
 
-			}
-		],
-		'confirmed' : [
-			{
-				id: 54321,
-				customerName: 'Blurb Blurdington',
-				pickUp: '7:00pm'
-			}
-		]
-	};
+	this.intervalInstance;
+	this.startCheckingForOrders();
 }
 
 /**
@@ -34,11 +23,40 @@ OrdersService.prototype.getOrders = function () {
 
 	var place_id = JSON.parse(this.$window.localStorage.getItem('place_id')) || this.logInService.place_id || 5;
 
-	var url = 'foodcannon/api/1/place/' + place_id + '/orders/';
+	var ordersUrl = 'foodcannon/api/1/place/' + place_id + '/orders/';
 
-	return this.apiService.get(url).then(function(data){
+	this.ordersUrl = ordersUrl;
+
+	return this.apiService.get(ordersUrl).then(function(data){
 		self.orders = data;
 		return data;
 	});
 };
 
+/**
+ * Confirms the order has been processed
+ * @param {object} order
+ */
+OrdersService.prototype.confirmOrder = function (order) {
+	var confirmUrl = 'confirm/';
+
+	//this.apiService.post(this.ordersUrl + confirmUrl, order.id)
+	this.orders.confirmed.push(order);
+	console.log('ordersUrl', this.ordersUrl,'orders', this.orders);
+};
+
+/**
+ * Starts interval that calls getOrders()
+ */
+OrdersService.prototype.startCheckingForOrders = function () {
+	var self = this;
+
+	if (angular.isDefined(this.intervalInstance)){
+		return;
+	}
+
+	this.intervalInstance = this.$interval(function(){
+		//self.getOrders();
+		console.log('getOrders!!')
+	}, 30000);
+};
