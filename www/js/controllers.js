@@ -18,7 +18,7 @@ function LogInCtrl (logInService, $ionicLoading, $window, $state) {
   this.$window = $window;
   this.$state = $state;
 
-  if (this.$window.localStorage['setHeaders']){
+  if (this.$window.localStorage['setHeaders']) {
     this.$state.go('app.orders')
   }
 
@@ -51,7 +51,8 @@ function OrdersCtrl (ordersService) {
 
   this.orders = this.ordersService.orders;
 
-  this.selectedOrder = this.orders.unconfirmed[0] || this.orders.confirmed[0] || this.orders.ready[0] || {};
+  this.selectedOrder = this.orders.unconfirmed[0] || this.orders.confirmed[0] || this.orders.ready[0] || false;
+
 }
 
 OrdersCtrl.prototype.selectOrder = function (order) {

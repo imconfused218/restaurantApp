@@ -39,6 +39,7 @@ angular.module('restaurantApp', ['ionic', 'restaurantApp.controllers', 'restaura
           controller: 'ordersCtrl as orders',
           resolve : {
             getInitialOrders : function(ordersService) {
+              console.log('this was called');
               return ordersService.getOrders();
             }
           }

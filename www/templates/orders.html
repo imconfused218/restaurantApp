@@ -5,50 +5,68 @@
   <ion-content class='ordersViewContainer'>
     <div class='row'>
     	<div class='col col-25 ordersListContainer'>
-  			<ion-list>
-  				<ion-item class='item item-divider'>
-  					Needs Confirmation!
-  				</ion-item>
-  				<ion-item ng-repeat='order in orders.ordersService.orders.unconfirmed' ng-click='orders.selectOrder(order)'>
-  					<order-box></order-box>
-  				</ion-item>
-  				<ion-item class='item item-divider'>
-  					Cooking!
-  				</ion-item>
-  				<ion-item ng-repeat='order in orders.ordersService.orders.confirmed' ng-click='orders.selectOrder(order)'>
-  					<order-box></order-box>
-  				</ion-item>
-          <ion-item class='item item-divider'>
-            Ready for pick up!
-          </ion-item>
-          <ion-item ng-repeat='order in orders.ordersService.orders.ready' ng-click='orders.selectOrder(order)'>
-            <order-box></order-box>
-          </ion-item>
-  			</ion-list>
+        <div class='ordersSubHeader'>
+           <i class='ion-alert-circled'></i> Needs Confirmation!
+        </div>
+        <div class='ordersListSubContainer'>
+    			<ion-list>
+    				<ion-item ng-repeat='order in orders.ordersService.orders.unconfirmed' ng-click='orders.selectOrder(order)'>
+    					<order-box></order-box>
+    				</ion-item>
+          </ion-list>
+        </div>
+        <div class='ordersSubHeader'>
+          <i class='ion-fireball'></i> Cooking!
+        </div>
+        <div class='ordersListSubContainer'>
+          <ion-list>
+    				<ion-item ng-repeat='order in orders.ordersService.orders.confirmed' ng-click='orders.selectOrder(order)'>
+    					<order-box></order-box>
+    				</ion-item>
+          </ion-list>
+        </div>
+        <div class='ordersSubHeader'>
+           <i class='ion-checkmark-round'></i> Ready for pick up!
+        </div>
+        <div class='ordersListSubContainer'>
+          <ion-list>
+            <ion-item ng-repeat='order in orders.ordersService.orders.ready' ng-click='orders.selectOrder(order)'>
+              <order-box></order-box>
+            </ion-item>
+    			</ion-list>
+        </div>
     	</div>
     	<div class='col col-70'>
-    		<div class='orderInfoHeader'>
-          <div class='orderNumber'>Order No. {{orders.selectedOrder.id}}</div>
-          <div class='orderCustomerName'>for {{orders.selectedOrder.customerName}}</div>
-          <div class='orderPickupTime'>Pickup at {{orders.selectedOrder.pickUp}}</div>
-        </div>
-        <div class='orderInfoDetails'>
-          <div class='itemInfoContainer' ng-repeat='item in orders.selectedOrder.items'>
-            <div class='subItemInfo'>
-              <div class='itemThumbnail'><img ng-src='{{item.img}}'/></div><div class='itemName'> {{item.name}} <span class='itemQuant'>x{{item.quant}}</span></div>
+        <div class='orderViewContainer' ng-show='orders.selectedOrder'>
+      		<div class='orderInfoHeader'>
+            <div class='orderNumber'>Order No. {{orders.selectedOrder.id}}</div>
+            <div class='orderCustomerName'>for {{orders.selectedOrder.customerName}}</div>
+            <div class='orderPickupTime'>Pickup at {{orders.selectedOrder.pickUp}}</div>
+          </div>
+          <div class='orderInfoDetails'>
+            <div class='itemInfoContainer' ng-repeat='item in orders.selectedOrder.items'>
+              <div class='subItemInfo'>
+                <div class='itemThumbnail'><img ng-src='{{item.img}}'/></div><div class='itemName'> {{item.name}} <span class='itemQuant'>x{{item.quant}}</span></div>
+              </div>
+              <div class='itemPrice'>${{item.price}}</div>
             </div>
-            <div class='itemPrice'>${{item.price}}</div>
+      	  </div>
+          <div class='row'>
+            <div class='orderPriceDetails col col-33 col-offset-67'>
+              <div class='orderSubtotal'><div>Subtotal</div><div>${{orders.selectedOrder.subtotal}}</div></div>
+              <div class='orderTax'><div>Tax</div><div>${{orders.selectedOrder.tax}}</div></div>
+              <div class='orderTotalPrice'><div>Total</div><div>${{orders.selectedOrder.total}}</div></div>
+            </div>
+          </div>
+          <div class='orderBtnContainer'>
+            <button class='button button-dark' ng-click='orders.confirmOrder()'>Confirm Order</button>
+          </div>
         </div>
-    	</div>
-      <div class='row'>
-        <div class='orderPriceDetails col col-33 col-offset-67'>
-          <div class='orderSubtotal'><div>Subtotal</div><div>${{orders.selectedOrder.subtotal}}</div></div>
-          <div class='orderTax'><div>Tax</div><div>${{orders.selectedOrder.tax}}</div></div>
-          <div class='orderTotalPrice'><div>Total</div><div>${{orders.selectedOrder.total}}</div></div>
+        <div class='noOrdersViewContainer' ng-show='!orders.selectedOrder'>
+          <div class='noCurrentOrdersBox'>
+            No Current Orders
+          </div>
         </div>
-      </div>
-      <div class='orderBtnContainer'>
-        <button class='button button-dark' ng-click='orders.confirmOrder()'>Confirm Order</button>
       </div>
     </div>
   </ion-content>

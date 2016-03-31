@@ -1,4 +1,21 @@
 
+.dark-gradient.bar-dark {
+	background: linear-gradient(#222, #444);
+}
+
+.ion-alert-circled {
+	color: firebrick;
+}
+
+.ion-fireball {
+	color: darkorange;
+}
+
+.ion-checkmark-round {
+	color: cornflowerblue;
+}
+
+
 
 /********************* Log In View ***********************/
 
@@ -65,9 +82,22 @@
 .ordersListContainer {
 	margin-top: -5px;
 	margin-left: -5px;
-	background-color: #444;
+	background: linear-gradient(to right, #222, #444);
 	font-family: 'Open Sans', sans-serif;
 	height: 1500px;
+}
+
+.ordersListSubContainer {
+	min-height: 100px;
+	background-color: white;
+	border-radius: 5px
+}
+
+.ordersSubHeader {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	color: white;
+	padding: 0.35em;
 }
 
 .orderInfoHeader {
@@ -154,4 +184,12 @@
 	font-family: 'Open Sans', sans-serif;
 	font-size: 24px;
 	padding: 5px 20px;
+}
+
+.noCurrentOrdersBox {
+	text-align: center;
+  margin-top: 7em;
+  font-size: 28px;
+  padding-top: 1.5em;
+  font-family: 'Open Sans',sans-serif;
 }
