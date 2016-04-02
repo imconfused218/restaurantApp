@@ -41,6 +41,7 @@ OrdersService.prototype.confirmOrder = function (order) {
 	var confirmUrl = 'confirm/';
 
 	//this.apiService.post(this.ordersUrl + confirmUrl, order.id)
+	order.status = "confirmed";
 	this.orders.confirmed.push(order);
 	console.log('ordersUrl', this.ordersUrl,'orders', this.orders);
 };
@@ -56,7 +57,7 @@ OrdersService.prototype.startCheckingForOrders = function () {
 	}
 
 	this.intervalInstance = this.$interval(function(){
-		//self.getOrders();
+		self.getOrders();
 		console.log('getOrders!!')
 	}, 30000);
 };

@@ -2,11 +2,12 @@ angular.module('restaurantApp.services', [])
       .service('apiService', ApiService);
 
   /** @ngInject */
-  function ApiService($http, $q, $log, $ionicLoading) {
+  function ApiService($http, $q, $log, $ionicLoading, $window) {
     this.$http = $http;
     this.$q = $q;
     this.$log = $log;
     this.$ionicLoading = $ionicLoading;
+    this.$window = $window;
 
     this.hostUrl = 'https://sandbox.menu.me/';
     this.auth = "Token BC04DM5Q-Qjlzk9SrtoZRCcRvbYYsomuVUuqzO8yHi3vl9jS7sKhBd3bRTl7ELhKwmrfpXeqXQQZC";
@@ -67,7 +68,7 @@ angular.module('restaurantApp.services', [])
   	var self = this;
     var settings = httpSettings;
     settings.url = this.hostUrl + httpSettings.url;
-    settings.headers = this.setHeaders;
+    settings.headers = JSON.parse(this.$window.localStorage.getItem("setHeaders")) || this.setHeaders;
 
     return this.$http(settings).then(function(response) {
       self.$log.info('apiService-response', response)

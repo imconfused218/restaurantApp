@@ -46,21 +46,44 @@ LogInCtrl.prototype.logMeIn = function () {
 };
 
 /////////////////////////////////// Orders Controller//////////////////////////////
-function OrdersCtrl (ordersService) {
+function OrdersCtrl (ordersService, placeService) {
   this.ordersService = ordersService;
+  this.placeService = placeService;
 
   this.orders = this.ordersService.orders;
+
+  this.orderOptionsEnabled = false;
 
   this.selectedOrder = this.orders.unconfirmed[0] || this.orders.confirmed[0] || this.orders.ready[0] || false;
 
 }
 
+/**
+ * Shows the order details for the selected order
+ * @param{Object}- order
+ */
 OrdersCtrl.prototype.selectOrder = function (order) {
-  this.selectedOrder = order;
-}
 
+  this.orderOptionsEnabled = false;
+  this.selectedOrder = order;
+};
+
+/**
+ * Calls the confirm order function on ordersService
+ */
 OrdersCtrl.prototype.confirmOrder = function () {
   this.ordersService.confirmOrder(this.selectedOrder);
-}
+};
+
+OrdersCtrl.prototype.requestHelp = function () {
+  this.placeService.requestHelp();
+};
+
+/**
+ * Toggles whether to show the additonal order options or not
+ */
+OrdersCtrl.prototype.toggleOrderOptions = function () {
+  this.orderOptionsEnabled = !this.orderOptionsEnabled;
+};
 
 
