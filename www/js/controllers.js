@@ -46,9 +46,10 @@ LogInCtrl.prototype.logMeIn = function () {
 };
 
 /////////////////////////////////// Orders Controller//////////////////////////////
-function OrdersCtrl (ordersService, placeService) {
+function OrdersCtrl (ordersService, placeService, $ionicModal) {
   this.ordersService = ordersService;
   this.placeService = placeService;
+  this.$ionicModal = $ionicModal;
 
   this.orders = this.ordersService.orders;
 
