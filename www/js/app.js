@@ -1,12 +1,22 @@
 
 
-angular.module('restaurantApp', ['ionic', 'restaurantApp.controllers', 'restaurantApp.services'])
+angular.module('restaurantApp', ['ionic','ionic.service.core', 'restaurantApp.controllers', 'restaurantApp.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
+
+    var push = new Ionic.Push({
+      "debug": true
+    });
+
+    push.register(function(token) {
+      console.log("Device token:",token.token);
+      push.saveToken(token);
+    });
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
+    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
 

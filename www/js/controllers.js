@@ -46,17 +46,17 @@ LogInCtrl.prototype.logMeIn = function () {
 };
 
 /////////////////////////////////// Orders Controller//////////////////////////////
-function OrdersCtrl (ordersService, placeService, $ionicModal) {
+function OrdersCtrl (ordersService, placeService, $ionicModal, $scope) {
   this.ordersService = ordersService;
   this.placeService = placeService;
   this.$ionicModal = $ionicModal;
+  this.$scope = $scope;
 
   this.orders = this.ordersService.orders;
 
   this.orderOptionsEnabled = false;
 
   this.selectedOrder = this.orders.unconfirmed[0] || this.orders.confirmed[0] || this.orders.ready[0] || false;
-
 }
 
 /**
@@ -76,9 +76,26 @@ OrdersCtrl.prototype.confirmOrder = function () {
   this.ordersService.confirmOrder(this.selectedOrder);
 };
 
-OrdersCtrl.prototype.requestHelp = function () {
+
+/**
+ * Not working properly. Needs to remove the modal when user closes it
+ */
+/*OrdersCtrl.prototype.requestHelp = function () {
+  console.log('this Ran');
+  var self = this;
   this.placeService.requestHelp();
-};
+  this.$ionicModal.fromTemplateUrl('/templates/requestHelpModal.html').then(function(modal){
+    console.log(modal, 'modal');
+    self.modal = modal;
+    self.modal.show();
+  });
+  this.modal.show();
+};*/
+
+/*
+OrdersCtrl.prototype.closeModal = function () {
+  this.modal.remove();
+};*/
 
 /**
  * Toggles whether to show the additonal order options or not
