@@ -58,6 +58,5 @@ OrdersService.prototype.startCheckingForOrders = function () {
 
 	this.intervalInstance = this.$interval(function(){
 		self.getOrders();
-		console.log('getOrders!!')
 	}, 30000);
 };

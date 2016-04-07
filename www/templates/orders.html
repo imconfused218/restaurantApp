@@ -10,7 +10,7 @@
         </div>
         <div class='ordersListSubContainer'>
     			<ion-list>
-    				<ion-item ng-repeat='order in orders.ordersService.orders.unconfirmed' ng-click='orders.selectOrder(order)'>
+    				<ion-item class='orderListItem' ng-repeat='order in orders.ordersService.orders.unconfirmed' ng-click='orders.selectOrder(order)'>
     					<order-box></order-box>
     				</ion-item>
           </ion-list>
@@ -20,7 +20,7 @@
         </div>
         <div class='ordersListSubContainer'>
           <ion-list>
-    				<ion-item ng-repeat='order in orders.ordersService.orders.confirmed' ng-click='orders.selectOrder(order)'>
+    				<ion-item class='orderListItem' ng-repeat='order in orders.ordersService.orders.confirmed' ng-click='orders.selectOrder(order)'>
     					<order-box></order-box>
     				</ion-item>
           </ion-list>
@@ -30,7 +30,7 @@
         </div>
         <div class='ordersListSubContainer'>
           <ion-list>
-            <ion-item ng-repeat='order in orders.ordersService.orders.ready' ng-click='orders.selectOrder(order)'>
+            <ion-item class='orderListItem' ng-repeat='order in orders.ordersService.orders.ready' ng-click='orders.selectOrder(order)'>
               <order-box></order-box>
             </ion-item>
     			</ion-list>

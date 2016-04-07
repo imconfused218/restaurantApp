@@ -1,8 +1,17 @@
 <div class='orderBoxContainer'>
-	<div>
-		Order No. {{order.id}} - {{order.customerName}}
-	</div>
-	<div>
-		Ready by {{order.pickUp}}
+	<div class='row'>
+		<div class='col col-center'>
+			<div class='orderSymbol'>
+				
+			</div>
+		</div>
+		<div class='col'>
+			<div class='mainRow'>
+				Order No. {{order.id}} - {{order.customerName}}
+			</div>
+			<div class='subRow'>
+				Ready by {{order.pickUp}}
+			</div>
+		</div>
 	</div>
 </div>

@@ -56,7 +56,7 @@ function OrdersCtrl (ordersService, placeService, $ionicModal, $scope) {
 
   this.orderOptionsEnabled = false;
 
-  this.selectedOrder = this.orders.unconfirmed[0] || this.orders.confirmed[0] || this.orders.ready[0] || false;
+  this.selectedOrder = this.selectInitialOrder();
 }
 
 /**
@@ -74,6 +74,14 @@ OrdersCtrl.prototype.selectOrder = function (order) {
  */
 OrdersCtrl.prototype.confirmOrder = function () {
   this.ordersService.confirmOrder(this.selectedOrder);
+};
+
+/**
+ * If there are any active orders it will return one or return false
+ * @returns{Object|Boolean} An order object or false
+ */ 
+OrdersCtrl.prototype.selectInitialOrder = function () {
+  return this.orders.unconfirmed[0] || this.orders.confirmed[0] || this.orders.ready[0] || false;
 };
 
 
