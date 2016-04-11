@@ -22,18 +22,18 @@
         </div>
         <div class='ordersListSubContainer'>
           <ion-list>
-    				<ion-item class='orderListItem' ng-repeat='order in orders.ordersService.orders.confirmed' ng-click='orders.selectOrder(order)'>
+    				<ion-item class='orderListItem confirmedList' ng-repeat='order in orders.ordersService.orders.confirmed' ng-click='orders.selectOrder(order)'>
     					<order-box></order-box>
     				</ion-item>
           </ion-list>
         </div>
         <div class='ordersSubHeader'>
            <i class='ion-checkmark-round'></i> Ready for pick up!
-           <div class='ordersCount' style='background-color: blue'>{{orders.ordersService.orders.ready.length}}</div>
+           <div class='ordersCount' style='background-color: green'>{{orders.ordersService.orders.ready.length}}</div>
         </div>
         <div class='ordersListSubContainer'>
           <ion-list>
-            <ion-item class='orderListItem' ng-repeat='order in orders.ordersService.orders.ready' ng-click='orders.selectOrder(order)'>
+            <ion-item class='orderListItem readyList' ng-repeat='order in orders.ordersService.orders.ready' ng-click='orders.selectOrder(order)'>
               <order-box></order-box>
             </ion-item>
     			</ion-list>
@@ -50,11 +50,16 @@
           <div class='orderInfoDetails'>
             <div class='itemInfoContainer' ng-repeat='item in orders.selectedOrder.items'>
               <div class='subItemInfo'>
-                <div class='itemThumbnail'><img ng-src='{{item.img}}'/></div><div class='itemName'> {{item.name}} <span class='itemQuant'>x{{item.quant}}</span></div>
+                <div class='itemThumbnail'><img ng-src='{{item.img}}'/></div>
+                <div class='itemName'> {{item.name}}<span class='itemPrice'>${{item.price}}</span> </div>
               </div>
-              <div class='itemPrice'>${{item.price}}</div>
+              <div class='itemQuant'>x {{item.quant}}</div>
+            </div>
+            <div class='quantTotalContainer'>
+              <div class='quantTotal'>Total Items: {{orders.findTotalItems(orders.selectedOrder)}}</div>
             </div>
       	  </div>
+          <div class='lineBreak'></div>
           <div class='row'>
             <div class='orderPriceDetails col col-33 col-offset-67'>
               <div class='orderSubtotal'><div>Subtotal</div><div>${{orders.selectedOrder.subtotal}}</div></div>
@@ -65,7 +70,7 @@
           <div class='orderBtnContainer'>
             <button class='button button-balanced' ng-click='orders.confirmOrder()' ng-show='orders.selectedOrder.status == "unconfirmed"'>Confirm Order for {{orders.selectedOrder.pickUp}} pick up</button>
             <div class='orderConfirmedMessage' ng-show='orders.selectedOrder.status == "confirmed"'>Order is confirmed for {{orders.selectedOrder.pickUp}} pick up time.</div>
-            <div class='additonalActions'>
+            <!--<div class='additonalActions'>
               <div class='additionalActionsMessage' ng-click='orders.toggleOrderOptions()'>Additional Order Options <i class='icon' ng-class='orders.orderOptionsEnabled ? "ion-arrow-down-b" : "ion-arrow-right-b"'></i></div>
               <div class='subOrderOptionsContainer' ng-show='orders.orderOptionsEnabled'>
                 <div class='subOrderHeader'>Reschedule time</div>
@@ -73,7 +78,7 @@
                   <button class='button button-positive'>It's done early!</button><button class='button button-assertive'>I need more time!</button>
                 </div>
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
         <div class='noOrdersViewContainer' ng-show='!orders.selectedOrder'>

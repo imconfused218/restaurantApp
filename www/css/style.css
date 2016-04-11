@@ -12,7 +12,7 @@
 }
 
 .ion-checkmark-round {
-	color: cornflowerblue;
+	color: green;
 }
 
 
@@ -40,13 +40,13 @@
 	border: solid 1px;
 	border-radius: 100%;
 	background-color: black;
-	margin-left: 20px;
+	margin-left: 5px;
 }
 
 .orderBoxContainer {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 16px;
-	padding-right: 15px;
+	font-size: 18px;
+	padding-right: 35px;
 }
 
 .orderBoxContainer .mainRow,.orderBoxContainer .subRow {
@@ -54,11 +54,13 @@
 }
 
 .orderBoxContainer .mainRow {
-	font-weight: 600;
+	font-style: italic;
 }
 
 .orderBoxContainer .subRow {
-	font-style: italic;
+	font-weight: 600;
+	font-size: 20px;
+	
 }
 
 
@@ -66,7 +68,6 @@
 
 .ordersViewContainer {
 	position: fixed;
-	position: absolute;
 	top: 10;
 	right: 0;
 	bottom: 0;
@@ -150,10 +151,18 @@
 }
 
 .orderListItem {
-	background-color: #CCC;
+	background-color: hsla(357, 100%, 84%, 1);
 	border-color: #222;
 	padding: 0;
 	border-radius: 5px;
+}
+
+.confirmedList {
+	background-color: hsla(24, 100%, 75%, 1);
+}
+
+.readyList {
+	background-color: hsla(119, 100%, 79%, 1);
 }
 
 .orderViewContainer {
@@ -179,8 +188,14 @@
 .orderNumber, .orderPickupTime {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 24px;
-	font-weight: 500;
 	margin-top: 30px;
+	color: #444;
+}
+
+.orderPickupTime {
+	color: #111;
+	font-weight: 600;
+	font-size: 26px;
 }
 
 .orderCustomerName {
@@ -214,8 +229,12 @@
 	color: #444;
 }
 
-.itemQuant {
-	margin-left: 15px;
+.itemQuant, .quantTotal {
+	padding-top: 20px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 24px;
+	color: #111;
+	font-weight: 600;
 }
 
 .itemPrice {
@@ -223,11 +242,29 @@
 	font-family: 'Open Sans', sans-serif;
 	font-size: 18px;
 	color: #444;
+	margin-left: 10px;
 }
 
 
 .orderPriceDetails {
 	padding-right: 40px;
+}
+
+.quantTotalContainer {
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+.quantTotal {
+	margin-right: 1.7em;
+	padding-bottom: 1em;
+}
+
+.lineBreak {
+	height: 2px;
+	border-bottom: dashed 1px #111;
+	width: 85%;
+	margin: auto;
 }
 
 .orderSubtotal, .orderTax, .orderTotalPrice {

@@ -5,13 +5,11 @@ function OrdersService (apiService, logInService, $window, $interval) {
 	this.apiService = apiService;
 	this.logInService = logInService;
 	this.$window = $window;
-	this.$interval = $interval;
 
 	this.ordersUrl = '';
 	this.orders = {};
 
-	this.intervalInstance;
-	this.startCheckingForOrders();
+	
 }
 
 /**
@@ -19,6 +17,7 @@ function OrdersService (apiService, logInService, $window, $interval) {
  *@returns{Promise<Object>}
  */
 OrdersService.prototype.getOrders = function () {
+	console.log('getOrdersService');
 	var self = this;
 
 	var place_id = JSON.parse(this.$window.localStorage.getItem('place_id')) || this.logInService.place_id || 5;
@@ -44,19 +43,4 @@ OrdersService.prototype.confirmOrder = function (order) {
 	order.status = "confirmed";
 	this.orders.confirmed.push(order);
 	console.log('ordersUrl', this.ordersUrl,'orders', this.orders);
-};
-
-/**
- * Starts interval that calls getOrders()
- */
-OrdersService.prototype.startCheckingForOrders = function () {
-	var self = this;
-
-	if (angular.isDefined(this.intervalInstance)){
-		return;
-	}
-
-	this.intervalInstance = this.$interval(function(){
-		self.getOrders();
-	}, 30000);
 };

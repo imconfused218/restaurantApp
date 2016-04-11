@@ -46,22 +46,27 @@ LogInCtrl.prototype.logMeIn = function () {
 };
 
 /////////////////////////////////// Orders Controller//////////////////////////////
-function OrdersCtrl (ordersService, placeService, $ionicModal, $scope) {
+function OrdersCtrl (ordersService, placeService, $ionicModal, $scope, $interval) {
   this.ordersService = ordersService;
   this.placeService = placeService;
   this.$ionicModal = $ionicModal;
   this.$scope = $scope;
+  this.$interval = $interval;
 
   this.orders = this.ordersService.orders;
 
   this.orderOptionsEnabled = false;
 
   this.selectedOrder = this.selectInitialOrder();
+
+  this.intervalInstance;
+
+  this.startCheckingForOrders();
 }
 
 /**
  * Shows the order details for the selected order
- * @param{Object}- order
+ * @param{Object} order
  */
 OrdersCtrl.prototype.selectOrder = function (order) {
 
@@ -104,6 +109,45 @@ OrdersCtrl.prototype.selectInitialOrder = function () {
 OrdersCtrl.prototype.closeModal = function () {
   this.modal.remove();
 };*/
+
+OrdersCtrl.prototype.getOrders = function () {
+  var self = this;
+
+  this.ordersService.getOrders().then(function(result){
+    if (!self.selectedOrder) {
+      self.selectedOrder = self.selectInitialOrder();
+    }
+  })
+};
+
+/**
+ * Starts interval that calls getOrders()
+ */
+OrdersCtrl.prototype.startCheckingForOrders = function () {
+  var self = this;
+
+  if (angular.isDefined(this.intervalInstance)){
+    return;
+  }
+
+  this.intervalInstance = this.$interval(function(){
+    self.getOrders();
+  }, 30000);
+};
+
+/**
+ * Takes an order and returns the total number of items in order
+ * @param{Object} order
+ * @returns{Number}
+ */
+OrdersCtrl.prototype.findTotalItems = function (order) {
+  if (!order) {return;}
+  var count = 0;
+  for (var i = 0; i < order.items.length; i++) {
+    count += order.items[i].quant;
+  }
+  return count;
+};
 
 /**
  * Toggles whether to show the additonal order options or not
