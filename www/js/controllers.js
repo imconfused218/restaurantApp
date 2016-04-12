@@ -121,7 +121,7 @@ OrdersCtrl.prototype.closeModal = function () {
 OrdersCtrl.prototype.getOrders = function () {
   var self = this;
 
-  this.ordersService.getOrders().then(function(result){
+  this.ordersService.getOrders().then(function(result) {
     if (!self.selectedOrder) {
       self.selectedOrder = self.selectInitialOrder();
     }
