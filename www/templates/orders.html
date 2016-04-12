@@ -41,7 +41,8 @@
     	</div>
     	<div class='col col-70'>
         <div class='orderViewContainer' ng-show='orders.selectedOrder'>
-          <button class='button button-energized helpButton'>Need Help?</button>
+          <button class='button button-energized helpButton' ng-click='orders.requestHelp()'>Need Help?</button>
+          <button ng-hide='true' class='button button-assertive lateButton'>Need more Time?</button>
       		<div class='orderInfoHeader'>
             <div class='orderNumber'>Order No. {{orders.selectedOrder.id}}</div>
             <div class='orderCustomerName'>for {{orders.selectedOrder.customerName}}</div>

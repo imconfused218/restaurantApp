@@ -17,7 +17,6 @@ function OrdersService (apiService, logInService, $window, $interval) {
  *@returns{Promise<Object>}
  */
 OrdersService.prototype.getOrders = function () {
-	console.log('getOrdersService');
 	var self = this;
 
 	var place_id = JSON.parse(this.$window.localStorage.getItem('place_id')) || this.logInService.place_id || 5;

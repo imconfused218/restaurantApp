@@ -62,6 +62,12 @@ function OrdersCtrl (ordersService, placeService, $ionicModal, $scope, $interval
   this.intervalInstance;
 
   this.startCheckingForOrders();
+
+  //For cleaning up the help modal from the DOM
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+
 }
 
 /**
@@ -93,23 +99,25 @@ OrdersCtrl.prototype.selectInitialOrder = function () {
 /**
  * Not working properly. Needs to remove the modal when user closes it
  */
-/*OrdersCtrl.prototype.requestHelp = function () {
-  console.log('this Ran');
+OrdersCtrl.prototype.requestHelp = function () {
   var self = this;
   this.placeService.requestHelp();
-  this.$ionicModal.fromTemplateUrl('/templates/requestHelpModal.html').then(function(modal){
+  this.$ionicModal.fromTemplateUrl('/templates/requestHelpModal.html', {
+    scope: this.$scope
+  }).then(function(modal){
     console.log(modal, 'modal');
     self.modal = modal;
     self.modal.show();
   });
-  this.modal.show();
-};*/
+};
 
-/*
 OrdersCtrl.prototype.closeModal = function () {
   this.modal.remove();
-};*/
+};
 
+/**
+ * every 30s
+ */
 OrdersCtrl.prototype.getOrders = function () {
   var self = this;
 
@@ -126,7 +134,7 @@ OrdersCtrl.prototype.getOrders = function () {
 OrdersCtrl.prototype.startCheckingForOrders = function () {
   var self = this;
 
-  if (angular.isDefined(this.intervalInstance)){
+  if (angular.isDefined(this.intervalInstance)) {
     return;
   }
 
@@ -155,5 +163,3 @@ OrdersCtrl.prototype.findTotalItems = function (order) {
 OrdersCtrl.prototype.toggleOrderOptions = function () {
   this.orderOptionsEnabled = !this.orderOptionsEnabled;
 };
-
-
