@@ -53,8 +53,6 @@ function OrdersCtrl (ordersService, placeService, $ionicModal, $scope, $interval
   this.$scope = $scope;
   this.$interval = $interval;
 
-  this.orders = this.ordersService.orders;
-
   this.orderOptionsEnabled = false;
 
   this.selectedOrder = this.selectInitialOrder();
@@ -92,16 +90,16 @@ OrdersCtrl.prototype.confirmOrder = function () {
  * @returns{Object|Boolean} An order object or false
  */ 
 OrdersCtrl.prototype.selectInitialOrder = function () {
-  return this.orders.unconfirmed[0] || this.orders.confirmed[0] || this.orders.ready[0] || false;
+  return this.ordersService.orders.unconfirmed[0] || this.ordersService.orders.confirmed[0] || this.ordersService.orders.ready[0] || false;
 };
 
 
 /**
- * Not working properly. Needs to remove the modal when user closes it
+ * Sends request to server asking for a call. Opens modal letting them know help is on the way
  */
-OrdersCtrl.prototype.requestHelp = function () {
+OrdersCtrl.prototype.requestHelp = function (order) {
   var self = this;
-  this.placeService.requestHelp();
+  this.ordersService.requestHelp(order);
   this.$ionicModal.fromTemplateUrl('/templates/requestHelpModal.html', {
     scope: this.$scope
   }).then(function(modal){
@@ -121,10 +119,9 @@ OrdersCtrl.prototype.closeModal = function () {
 OrdersCtrl.prototype.getOrders = function () {
   var self = this;
 
-  this.ordersService.getOrders().then(function(result) {
-    if (!self.selectedOrder) {
-      self.selectedOrder = self.selectInitialOrder();
-    }
+  console.log('getOrders called');
+  this.ordersService.getOrders().then(function(result){
+    self.selectedOrder = self.selectInitialOrder();
   })
 };
 

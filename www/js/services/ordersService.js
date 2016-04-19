@@ -33,13 +33,47 @@ OrdersService.prototype.getOrders = function () {
 
 /**
  * Confirms the order has been processed
- * @param {object} order
+ * @param{object} order
+ * @returns{Promise<Object>}
  */
 OrdersService.prototype.confirmOrder = function (order) {
-	var confirmUrl = 'confirm/';
+	var self = this;
+	var confirmUrl = this.ordersUrl + order.id +'/confirm/';
 
-	//this.apiService.post(this.ordersUrl + confirmUrl, order.id)
-	order.status = "confirmed";
-	this.orders.confirmed.push(order);
-	console.log('ordersUrl', this.ordersUrl,'orders', this.orders);
+	return this.apiService.post(confirmUrl).then(function(result){
+		console.log('result', result);
+		self.getOrders();
+		return result;
+	});
 };
+
+/**
+ * Sends message that order is finished and ready for pick up
+ * @param{object} order
+ * @returns{Promise<Object>}
+ */
+OrdersService.prototype.orderReady = function (order) {
+	var self = this;
+	var readyUrl = this.ordersUrl + order.id + '/ready/';
+
+	return this.apiService.post(readyUrl).then(function(result){
+		console.log('readyResult');
+		self.getOrders();
+		return result;
+	});
+};
+
+/**
+ * Sends help request to the server
+ * @param{object} order
+ * @returns{Promise<Object>}
+ */
+OrdersService.prototype.requestHelp = function (order) {
+	var helpUrl = this.ordersUrl + order.id + '/help/';
+
+	return this.apiService.post(helpUrl).then(function(result){
+		console.log('helpResult', result);
+		return result;
+	});
+};
+

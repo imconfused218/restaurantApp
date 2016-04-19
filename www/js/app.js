@@ -50,6 +50,9 @@ angular.module('restaurantApp', ['ionic','ionic.service.core', 'restaurantApp.co
           resolve : {
             getInitialOrders : function(ordersService) {
               return ordersService.getOrders();
+            },
+            getInitialStatus : function(placeService) {
+              return placeService.getStatus();
             }
           }
         }
