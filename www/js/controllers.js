@@ -95,11 +95,11 @@ OrdersCtrl.prototype.selectInitialOrder = function () {
 
 
 /**
- * Not working properly. Needs to remove the modal when user closes it
+ * Sends request to server asking for a call. Opens modal letting them know help is on the way
  */
-OrdersCtrl.prototype.requestHelp = function () {
+OrdersCtrl.prototype.requestHelp = function (order) {
   var self = this;
-  this.placeService.requestHelp();
+  this.ordersService.requestHelp(order);
   this.$ionicModal.fromTemplateUrl('/templates/requestHelpModal.html', {
     scope: this.$scope
   }).then(function(modal){

@@ -128,7 +128,7 @@
 }
 
 .restaurantProfileName, .restaurantProfileStatus {
-	color: #222;
+color: #222;
   font-size: 28px;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
@@ -146,16 +146,31 @@
 	font-size: 1.5em;
 }
 
+.ordersColumn {
+	position: relative;
+}
+
 .ordersListContainer {
-	margin-top: -5px;
-	margin-left: -5px;
+	margin-top: -0.69em;
+	margin-left: -0.69em;
 	background: linear-gradient(to right, #222, #444);
 	font-family: 'Open Sans', sans-serif;
-	height: 1500px;
+
+	height: 800px;
+	
+	/*position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	padding-left: 1em;
+	padding-top: 1em;
+	overflow: hidden;*/
 }
 
 .ordersListSubContainer {
-	border-radius: 5px
+	border-radius: 5px;
+	width: 98%;
 }
 
 .ordersSubHeader {
@@ -323,6 +338,7 @@
 .orderBtnContainer {
 	margin-top: 1em;
 	text-align: center;
+	margin-bottom: 4em;
 }
 
 .orderBtnContainer button {
