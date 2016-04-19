@@ -137,13 +137,13 @@
 
 .restaurantStatus {
 	font-family: 'Open Sans', sans-serif;
-	padding-top: 2px;
+	padding-top: 0.2em;
 	color: hsla(122, 100%, 70%, 1);
-	font-size: 20px;
+	font-size: 1.2em;
 }
 
 .restaurantStatus i {
-	font-size: 28px;
+	font-size: 1.5em;
 }
 
 .ordersListContainer {
@@ -202,7 +202,7 @@
 .button.helpButton {
 	right: 3em;
 	color: #222;
-	font-size: 20px;
+	font-size: 1.2em;
 	font-family: 'Open Sans', sans-serif;
 	border-radius: 20px;
 	position: absolute;
@@ -259,12 +259,19 @@
 	color: #444;
 }
 
+
+
 .itemQuant, .quantTotal {
-	padding-top: 20px;
+	padding-top: 1em;
 	font-family: 'Open Sans', sans-serif;
-	font-size: 24px;
+	font-size: 1.9em;
 	color: #111;
 	font-weight: 600;
+}
+
+.itemQuant div {
+	background-color: #999;
+	padding: 0.2em;
 }
 
 .itemPrice {

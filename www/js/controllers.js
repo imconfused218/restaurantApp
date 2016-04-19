@@ -53,8 +53,6 @@ function OrdersCtrl (ordersService, placeService, $ionicModal, $scope, $interval
   this.$scope = $scope;
   this.$interval = $interval;
 
-  this.orders = this.ordersService.orders;
-
   this.orderOptionsEnabled = false;
 
   this.selectedOrder = this.selectInitialOrder();
@@ -92,7 +90,7 @@ OrdersCtrl.prototype.confirmOrder = function () {
  * @returns{Object|Boolean} An order object or false
  */ 
 OrdersCtrl.prototype.selectInitialOrder = function () {
-  return this.orders.unconfirmed[0] || this.orders.confirmed[0] || this.orders.ready[0] || false;
+  return this.ordersService.orders.unconfirmed[0] || this.ordersService.orders.confirmed[0] || this.ordersService.orders.ready[0] || false;
 };
 
 
@@ -120,11 +118,9 @@ OrdersCtrl.prototype.closeModal = function () {
  */
 OrdersCtrl.prototype.getOrders = function () {
   var self = this;
-
+  console.log('getOrders called');
   this.ordersService.getOrders().then(function(result){
-    if (!self.selectedOrder) {
-      self.selectedOrder = self.selectInitialOrder();
-    }
+    self.selectedOrder = self.selectInitialOrder();
   })
 };
 

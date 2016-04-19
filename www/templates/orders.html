@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view view-title='Orders' hide-back-button="true">
   <ion-nav-title>
     <span class='ordersTitle'>Current Orders</span>
   </ion-nav-title>
@@ -12,7 +12,22 @@
         <div class='ordersListSubContainer'>
     			<ion-list>
     				<ion-item class='orderListItem' ng-repeat='order in orders.ordersService.orders.unconfirmed' ng-click='orders.selectOrder(order)'>
-    					<order-box></order-box>
+    					<div class='orderBoxContainer'>
+                <div class='row'>
+                  <!--<div class='col col-center'>
+                    <div class='orderSymbol'>
+                    </div>
+                  </div>-->
+                  <div class='col'>
+                    <div class='mainRow'>
+                      <i class='ion-bag'></i> Order No. {{order.id}} - {{order.customerName}}
+                    </div>
+                    <div class='subRow'>
+                      Ready by {{order.pickUp}}
+                    </div>
+                  </div>
+                </div>
+              </div>
     				</ion-item>
           </ion-list>
         </div>
@@ -23,7 +38,22 @@
         <div class='ordersListSubContainer'>
           <ion-list>
     				<ion-item class='orderListItem confirmedList' ng-repeat='order in orders.ordersService.orders.confirmed' ng-click='orders.selectOrder(order)'>
-    					<order-box></order-box>
+              <div class='orderBoxContainer'>
+                <div class='row'>
+                  <!--<div class='col col-center'>
+                    <div class='orderSymbol'>
+                    </div>
+                  </div>-->
+                  <div class='col'>
+                    <div class='mainRow'>
+                      <i class='ion-bag'></i> Order No. {{order.id}} - {{order.customerName}}
+                    </div>
+                    <div class='subRow'>
+                      Ready by {{order.pickUp}}
+                    </div>
+                  </div>
+                </div>
+              </div>
     				</ion-item>
           </ion-list>
         </div>
@@ -34,7 +64,22 @@
         <div class='ordersListSubContainer'>
           <ion-list>
             <ion-item class='orderListItem readyList' ng-repeat='order in orders.ordersService.orders.ready' ng-click='orders.selectOrder(order)'>
-              <order-box></order-box>
+              <div class='orderBoxContainer'>
+                <div class='row'>
+                  <!--<div class='col col-center'>
+                    <div class='orderSymbol'>
+                    </div>
+                  </div>-->
+                  <div class='col'>
+                    <div class='mainRow'>
+                      <i class='ion-bag'></i> Order No. {{order.id}} - {{order.customerName}}
+                    </div>
+                    <div class='subRow'>
+                      Ready by {{order.pickUp}}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </ion-item>
     			</ion-list>
         </div>
@@ -51,10 +96,10 @@
           <div class='orderInfoDetails'>
             <div class='itemInfoContainer' ng-repeat='item in orders.selectedOrder.items'>
               <div class='subItemInfo'>
-                <div class='itemThumbnail'><img ng-src='{{item.img}}'/></div>
+                <div class='itemThumbnail'><img ng-src='http:{{item.img}}'/></div>
                 <div class='itemName'> {{item.name}}<span class='itemPrice'>${{item.price}}</span> </div>
               </div>
-              <div class='itemQuant'>x {{item.quant}}</div>
+              <div class='itemQuant'><div>x {{item.quant}}</div></div>
             </div>
             <div class='quantTotalContainer'>
               <div class='quantTotal'>Total Items: {{orders.findTotalItems(orders.selectedOrder)}}</div>
