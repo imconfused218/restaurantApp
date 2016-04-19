@@ -2,8 +2,10 @@
 
 angular.module('restaurantApp', ['ionic','ionic.service.core', 'restaurantApp.controllers', 'restaurantApp.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $ionicSideMenuDelegate) {
   $ionicPlatform.ready(function() {
+
+    $ionicSideMenuDelegate.canDragContent(false);
 
     var push = new Ionic.Push({
       "debug": true

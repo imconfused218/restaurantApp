@@ -5,12 +5,22 @@
       </ion-nav-back-button>
 
       <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-        </button>
+        <!--<button  class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>-->
       </ion-nav-buttons>
       <ion-nav-buttons side='right'>
-        <div class='restaurantStatus'><i class='ion-ios-sunny'></i>  Available for Orders</div>
-        <!--<div class='restaurantProfileContainer'>
+        <div>
+          <label class="item item-input item-select">
+            <div class="input-label">
+            </div>
+            <select>
+              <option>Blue</option>
+              <option selected>Green</option>
+              <option>Red</option>
+            </select>
+          </label>
+        </div>
+        <!--<div class='restaurantProfileContainer'>  <i class='ion-ios-sunny'></i>  Available for Orders
           <div class='restaurantImgContainer'><img src='http://www.allspicerestaurant.com/images/logo.png'/></div>
            <div class='restaurantProfileName'>All Spice</div>
           <div class='restaurantProfileStatus'>Available?</div>
@@ -20,7 +30,7 @@
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
-<!--  <ion-side-menu side="left">
+ <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
       <h1 class="title">Options</h1>
     </ion-header-bar>
@@ -31,5 +41,5 @@
         </ion-item>
       </ion-list>
     </ion-content>
-  </ion-side-menu>-->
+  </ion-side-menu>
 </ion-side-menus>
