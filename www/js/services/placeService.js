@@ -31,7 +31,9 @@ PlaceService.prototype.getStatus = function () {
  * Tells Server status on restaurant I.E open for orders or closed.
  * @returns{Promise<Object>}
  */
-PlaceService.prototype.postStatus = function () {
+PlaceService.prototype.postStatus = function (status) {
+	var status = status;
+
 	var place_id = JSON.parse(this.$window.localStorage.getItem('place_id')) || this.logInService.place_id || 5;
 
 	var placeUrl = "foodcannon/api/1/place/" + place_id + "/status/";

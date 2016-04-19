@@ -1,15 +1,37 @@
 angular.module('restaurantApp.controllers', ['restaurantApp.services', 'restaurantApp.directives'])
 
-.controller('AppCtrl', function() {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-})
+.controller('AppCtrl', AppCtrl)
 .controller('logInCtrl', LogInCtrl)
 .controller('ordersCtrl', OrdersCtrl);
+
+//////////////////////////////// Abstract App Controller//////////////////
+
+function AppCtrl ($ionicPopover, $scope, placeService) {
+  var self = this;
+  this.placeService = placeService;
+
+  //Create popOver from template
+  $ionicPopover.fromTemplateUrl('/templates/statusOptions.html', {
+    scope: $scope
+  }).then(function(popover) {
+    self.popover = popover;
+  });
+}
+
+/**
+ * returns currentStatus from place service
+ */
+AppCtrl.prototype.currentStatus = function () {
+  console.log('currentStatus', this.placeService.currentStatus);
+  return this.placeService.currentStatus;
+};
+
+AppCtrl.prototype.setStatus = function (status) {
+  this.popover.hide();
+  return this.placeService.postStatus(status).then(function(result){
+    return result;
+  })
+};
 
 ///////////////////////////////////// Log In Controller ////////////////////////////
 function LogInCtrl (logInService, $ionicLoading, $window, $state) {
@@ -46,12 +68,14 @@ LogInCtrl.prototype.logMeIn = function () {
 };
 
 /////////////////////////////////// Orders Controller//////////////////////////////
-function OrdersCtrl (ordersService, placeService, $ionicModal, $scope, $interval) {
+function OrdersCtrl (ordersService, $ionicModal, $scope, $interval, $ionicPopover) {
+  var self = this;
   this.ordersService = ordersService;
-  this.placeService = placeService;
   this.$ionicModal = $ionicModal;
   this.$scope = $scope;
   this.$interval = $interval;
+  this.$ionicPopover = $ionicPopover;
+
 
   this.orderOptionsEnabled = false;
 
@@ -65,6 +89,8 @@ function OrdersCtrl (ordersService, placeService, $ionicModal, $scope, $interval
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
+
+
 
 }
 

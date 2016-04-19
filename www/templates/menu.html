@@ -9,22 +9,12 @@
         </button>-->
       </ion-nav-buttons>
       <ion-nav-buttons side='right'>
-        <div>
-          <label class="item item-input item-select">
-            <div class="input-label">
-            </div>
-            <select>
-              <option>Blue</option>
-              <option selected>Green</option>
-              <option>Red</option>
-            </select>
-          </label>
+       <div class='button restaurantStatus' ng-click='AppCtrl.popover.show($event)'>
+          <div ng-switch='AppCtrl.currentStatus()'>
+            <div ng-switch-when='Open'><i class='ion-ios-sunny'></i>  Available for Orders</div>
+            <div ng-switch-when='Closed' style='color: indianred'><i class='ion-flash-off'></i>  Closed</div>
+          </div>
         </div>
-        <!--<div class='restaurantProfileContainer'>  <i class='ion-ios-sunny'></i>  Available for Orders
-          <div class='restaurantImgContainer'><img src='http://www.allspicerestaurant.com/images/logo.png'/></div>
-           <div class='restaurantProfileName'>All Spice</div>
-          <div class='restaurantProfileStatus'>Available?</div>
-        </div>-->
       </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>

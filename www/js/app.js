@@ -41,7 +41,12 @@ angular.module('restaurantApp', ['ionic','ionic.service.core', 'restaurantApp.co
       url: '/app',
       abstract: true,
       templateUrl: 'templates/menu.html',
-      controller: 'AppCtrl'
+      controller: 'AppCtrl as AppCtrl',
+      resolve: {
+        getInitialStatus : function(placeService) {
+          return placeService.getStatus();
+        }
+      }
     })
     .state('app.orders', {
       url: '/orders',
@@ -52,9 +57,6 @@ angular.module('restaurantApp', ['ionic','ionic.service.core', 'restaurantApp.co
           resolve : {
             getInitialOrders : function(ordersService) {
               return ordersService.getOrders();
-            },
-            getInitialStatus : function(placeService) {
-              return placeService.getStatus();
             }
           }
         }

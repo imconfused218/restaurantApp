@@ -60,7 +60,21 @@
 	font-size: 36px;
 }
 
+
+/**************** PopOver/Status Options template *****************/
+
+.statusPopoverContainer {
+	border-radius: 10px;
+}
+
+.statusPopoverContainer .list {
+
+}
+
+.statusPopoverContainer .list .item {}
+
 /**************** OrderBox Directive ************/
+/* OrderBox currently not being used as a directive*/
 
 /*** Currently an icon is being used instead *****/
 /*.orderSymbol {
@@ -135,11 +149,10 @@ color: #222;
   margin-top: 1em;
 }
 
-.restaurantStatus {
+div.button.restaurantStatus {
 	font-family: 'Open Sans', sans-serif;
-	padding-top: 0.2em;
 	color: hsla(122, 100%, 70%, 1);
-	font-size: 1.2em;
+	font-size: 1.1em;
 }
 
 .restaurantStatus i {
