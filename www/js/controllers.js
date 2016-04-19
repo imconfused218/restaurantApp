@@ -160,6 +160,7 @@ OrdersCtrl.prototype.findTotalItems = function (order) {
 /**
  * Toggles whether to show the additonal order options or not
  */
+ /*
 OrdersCtrl.prototype.toggleOrderOptions = function () {
   this.orderOptionsEnabled = !this.orderOptionsEnabled;
-};
+};*/
