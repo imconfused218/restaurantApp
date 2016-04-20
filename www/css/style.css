@@ -20,10 +20,17 @@
 /********************* Log In View ***********************/
 
 .logInHeader {
-	font-size: 32px;
+	font-size: 2.5em;
 	font-weight: bold;
 	text-align: center;
 	padding: 50px;
+}
+
+.placeIdMessage {
+	font-size: 1.5em;
+	text-align: center;
+	padding: 1em;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .logInBtnContainer {
@@ -321,6 +328,7 @@ div.button.restaurantStatus {
 	font-size: 1.9em;
 	color: #111;
 	font-weight: 600;
+	padding-right: 1em;
 }
 
 .itemQuant div {

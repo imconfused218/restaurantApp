@@ -40,13 +40,16 @@ function LogInCtrl (logInService, $ionicLoading, $window, $state) {
   this.$window = $window;
   this.$state = $state;
 
-  if (this.$window.localStorage['setHeaders']) {
+  if (this.$window.localStorage['setHeaders'] && this.$window.localStorage['device_token']) {
     this.$state.go('app.orders')
   }
 
+  this.showPlaceIdField = false;
+
   this.logInInfo = {
     email : "matt@menu.me",
-    password: "handsoff9"
+    password: "handsoff9",
+    place_id: ""
   }
 }
 
@@ -64,19 +67,25 @@ LogInCtrl.prototype.logMeIn = function () {
   this.$ionicLoading.show();
 
   this.logInService.logMeIn(this.logInInfo).then(function(result) {
-    self.$ionicLoading.hide();
-    self.$state.go('app.orders')
-  })
+    if (result.place_id === "") {
+      self.showPlaceIdField = true;
+      self.$ionicLoading.hide();
+    } else {
+      self.$ionicLoading.hide();
+      self.$state.go('app.orders')
+    }
+  });
 };
 
 /////////////////////////////////// Orders Controller//////////////////////////////
-function OrdersCtrl (ordersService, $ionicModal, $scope, $interval, $ionicPopover) {
+function OrdersCtrl (ordersService, $ionicLoading, $ionicModal, $scope, $interval, $ionicPopover) {
   var self = this;
   this.ordersService = ordersService;
   this.$ionicModal = $ionicModal;
   this.$scope = $scope;
   this.$interval = $interval;
   this.$ionicPopover = $ionicPopover;
+  this.$ionicLoading = $ionicLoading;
 
 
   this.orderOptionsEnabled = false;
@@ -110,8 +119,31 @@ OrdersCtrl.prototype.selectOrder = function (order) {
  * Calls the confirm order function on ordersService
  */
 OrdersCtrl.prototype.confirmOrder = function () {
-  this.ordersService.confirmOrder(this.selectedOrder);
+  var self = this;
+
+  //Show the Ionic Loading screen
+  this.$ionicLoading.show();
+
+  this.ordersService.confirmOrder(this.selectedOrder).then(function(result) {
+    self.$ionicLoading.hide();
+    self.getOrders();
+  });
 };
+
+/**
+ * Calls the order ready function on ordersService
+ */
+ OrdersCtrl.prototype.orderReady = function () {
+  var self = this;
+
+  //Show the Ionic Loading screen
+  this.$ionicLoading.show();
+
+  this.ordersService.orderReady(this.selectedOrder).then(function(result) {
+    self.$ionicLoading.hide()
+    self.getOrders();
+  });
+ };
 
 /**
  * If there are any active orders it will return one or return false
@@ -147,7 +179,6 @@ OrdersCtrl.prototype.closeModal = function () {
 OrdersCtrl.prototype.getOrders = function () {
   var self = this;
 
-  console.log('getOrders called');
   this.ordersService.getOrders().then(function(result){
     self.selectedOrder = self.selectInitialOrder();
   })

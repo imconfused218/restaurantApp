@@ -41,8 +41,6 @@ OrdersService.prototype.confirmOrder = function (order) {
 	var confirmUrl = this.ordersUrl + order.id +'/confirm/';
 
 	return this.apiService.post(confirmUrl).then(function(result){
-		console.log('result', result);
-		self.getOrders();
 		return result;
 	});
 };
@@ -57,8 +55,6 @@ OrdersService.prototype.orderReady = function (order) {
 	var readyUrl = this.ordersUrl + order.id + '/ready/';
 
 	return this.apiService.post(readyUrl).then(function(result){
-		console.log('readyResult');
-		self.getOrders();
 		return result;
 	});
 };
@@ -72,7 +68,6 @@ OrdersService.prototype.requestHelp = function (order) {
 	var helpUrl = this.ordersUrl + order.id + '/help/';
 
 	return this.apiService.post(helpUrl).then(function(result){
-		console.log('helpResult', result);
 		return result;
 	});
 };
