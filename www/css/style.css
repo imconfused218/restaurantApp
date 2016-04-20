@@ -31,6 +31,31 @@
 }
 
 
+/********************* Incoming Order View **************/
+
+@keyframes incomingOrder {
+	from {background-color: red;}
+	to {background-color: yellow;}
+}
+
+.incomingOrderContainer {
+	width: 100%;
+	background-color: red;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-name: incomingOrder;
+}
+
+.incomingOrder {
+	font-size: 4.6em;
+	color: black;
+	margin-top: 4em;
+	text-align: center;
+	font-family: 'Open sans', sans-serif;
+}
+
+
+
 /********************** Help Modal ******************/
 
 .helpModalContainer {

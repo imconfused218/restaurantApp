@@ -1,12 +1,12 @@
 
 
-angular.module('restaurantApp', ['ionic','ionic.service.core', 'restaurantApp.controllers', 'restaurantApp.services'])
+angular.module('restaurantApp', ['ionic','ionic.service.core','ionic.service.push', 'restaurantApp.controllers', 'restaurantApp.services'])
 
-.run(function($ionicPlatform, $ionicSideMenuDelegate) {
+.run(function($ionicPlatform, $ionicSideMenuDelegate, $ionicPush, $state) {
   $ionicPlatform.ready(function() {
 
     $ionicSideMenuDelegate.canDragContent(false);
-
+    /*
     var push = new Ionic.Push({
       "debug": true
     });
@@ -15,6 +15,22 @@ angular.module('restaurantApp', ['ionic','ionic.service.core', 'restaurantApp.co
       console.log("Device token:",token.token);
       push.saveToken(token);
     });
+    */
+
+    $ionicPush.init({
+      "debug": true,
+      "onNotification": function(notification) {
+        var payload = notification.payload;
+        console.log(notification, payload);
+        $state.go('newOrderScreen');
+      },
+      "onRegister": function(data) {
+        console.log(data.token);
+      }
+    });
+
+    $ionicPush.register();
+
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -36,6 +52,11 @@ angular.module('restaurantApp', ['ionic','ionic.service.core', 'restaurantApp.co
       url: '/logIn',
       templateUrl: 'templates/logIn.html',
       controller: 'logInCtrl as logInCtrl'
+    })
+    .state('newOrderScreen', {
+      url: '/newOrder',
+      templateUrl: 'templates/incomingOrder.html',
+      controller: 'newOrderCtrl as newOrderCtrl'
     })
     .state('app', {
       url: '/app',

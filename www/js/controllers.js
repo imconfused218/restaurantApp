@@ -2,7 +2,8 @@ angular.module('restaurantApp.controllers', ['restaurantApp.services', 'restaura
 
 .controller('AppCtrl', AppCtrl)
 .controller('logInCtrl', LogInCtrl)
-.controller('ordersCtrl', OrdersCtrl);
+.controller('ordersCtrl', OrdersCtrl)
+.controller('newOrderCtrl', NewOrderCtrl);
 
 //////////////////////////////// Abstract App Controller//////////////////
 
@@ -179,10 +180,13 @@ OrdersCtrl.prototype.findTotalItems = function (order) {
   return count;
 };
 
-/**
- * Toggles whether to show the additonal order options or not
- */
- /*
-OrdersCtrl.prototype.toggleOrderOptions = function () {
-  this.orderOptionsEnabled = !this.orderOptionsEnabled;
-};*/
+/********************************** New Order Controller *****************/
+
+function NewOrderCtrl ($state) {
+  this.$state = $state;
+}
+
+
+NewOrderCtrl.prototype.clickScreen = function () {
+  this.$state.go('app.orders');
+};
