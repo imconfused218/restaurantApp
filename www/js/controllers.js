@@ -11,7 +11,7 @@ function AppCtrl ($ionicPopover, $scope, placeService) {
   this.placeService = placeService;
 
   //Create popOver from template
-  $ionicPopover.fromTemplateUrl('/templates/statusOptions.html', {
+  $ionicPopover.fromTemplateUrl('templates/statusOptions.html', {
     scope: $scope
   }).then(function(popover) {
     self.popover = popover;
@@ -22,7 +22,6 @@ function AppCtrl ($ionicPopover, $scope, placeService) {
  * returns currentStatus from place service
  */
 AppCtrl.prototype.currentStatus = function () {
-  console.log('currentStatus', this.placeService.currentStatus);
   return this.placeService.currentStatus;
 };
 
@@ -126,7 +125,7 @@ OrdersCtrl.prototype.selectInitialOrder = function () {
 OrdersCtrl.prototype.requestHelp = function (order) {
   var self = this;
   this.ordersService.requestHelp(order);
-  this.$ionicModal.fromTemplateUrl('/templates/requestHelpModal.html', {
+  this.$ionicModal.fromTemplateUrl('templates/requestHelpModal.html', {
     scope: this.$scope
   }).then(function(modal){
     console.log(modal, 'modal');
