@@ -14,7 +14,7 @@
     "gulp-util": "^2.2.14",
     "shelljs": "^0.3.0"
   },
- "cordovaPlugins": [
+  "cordovaPlugins": [
     "cordova-plugin-device",
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
@@ -27,7 +27,9 @@
       "variables": {
         "SENDER_ID": "428453539662"
       }
-    }
+    },
+    "cordova-plugin-dialogs",
+    "ionic-plugin-deploy"
   ],
   "cordovaPlatforms": [
     {

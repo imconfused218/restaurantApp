@@ -6,6 +6,24 @@ angular.module('restaurantApp', ['ionic','ionic.service.core','ionic.service.pus
   $ionicPlatform.ready(function() {
 
     $ionicSideMenuDelegate.canDragContent(false);
+
+
+
+    var deploy = new Ionic.Deploy();
+    deploy.update().then(function(deployResult) {
+      // deployResult will be true when successfull and
+      // false otherwise
+      console.log('deployResult', deployResult);
+    }, function(deployUpdateError) {
+      console.log('deployUpDateError', deployUpDateError);
+      // fired if we're unable to check for updates or if any 
+      // errors have occured.
+    }, function(deployProgress) {
+      // this is a progress callback, so it will be called a lot
+      // deployProgress will be an Integer representing the current
+      // completion percentage.
+    });
+
     /*
     var push = new Ionic.Push({
       "debug": true
