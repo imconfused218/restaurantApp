@@ -1,14 +1,17 @@
 
 
-angular.module('restaurantApp', ['ionic','ionic.service.core','ionic.service.push', 'restaurantApp.controllers', 'restaurantApp.services'])
+angular.module('restaurantApp', ['ionic','ionic.service.core','ionic.service.push', 'restaurantApp.controllers', 'restaurantApp.services', 'ionic.service.analytics'])
 
-.run(function($ionicPlatform, $ionicSideMenuDelegate, $ionicPush, $state) {
+.run(function($window, $ionicPlatform, $ionicSideMenuDelegate, $ionicPush, $state, $ionicAnalytics) {
   $ionicPlatform.ready(function() {
 
+    var self = this;
+    this.$window = $window;
+
+    //disables sidemenu but not working correctly
     $ionicSideMenuDelegate.canDragContent(false);
 
-
-
+    //for auto updating 
     var deploy = new Ionic.Deploy();
     deploy.update().then(function(deployResult) {
       // deployResult will be true when successfull and
@@ -24,16 +27,25 @@ angular.module('restaurantApp', ['ionic','ionic.service.core','ionic.service.pus
       // completion percentage.
     });
 
+    //push notification config
     var push = new Ionic.Push({
       "debug": true,
       'onNotification': function(notification) {
         var payload = notification.payload;
         $state.go('newOrderScreen');
+      },
+      "pluginConfig": {
+        "ios": {
+          "badge": true,
+          "sound": true,
+          "alert": true
+        }
       }
     });
 
     push.register(function(token) {
       console.log("Device token:",token.token);
+      self.$window.localStorage['device_token'] = JSON.stringify(token.token);
       push.saveToken(token);
     });
 
@@ -66,6 +78,9 @@ angular.module('restaurantApp', ['ionic','ionic.service.core','ionic.service.pus
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    //Register for analytics
+    $ionicAnalytics.register();
   });
 })
 

@@ -58,6 +58,8 @@ function LogInCtrl (logInService, $ionicLoading, $window, $state) {
 LogInCtrl.prototype.logMeIn = function () {
   var self = this;
 
+  this.logInInfo['device_token'] = JSON.parse(this.$window.localStorage.getItem("device_token"))
+
   //Show the Ionic Loading screen
   this.$ionicLoading.show();
 
