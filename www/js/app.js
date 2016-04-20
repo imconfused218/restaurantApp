@@ -24,18 +24,22 @@ angular.module('restaurantApp', ['ionic','ionic.service.core','ionic.service.pus
       // completion percentage.
     });
 
-    /*
     var push = new Ionic.Push({
-      "debug": true
+      "debug": true,
+      'onNotification': function(notification) {
+        var payload = notification.payload;
+        $state.go('newOrderScreen');
+      }
     });
 
     push.register(function(token) {
       console.log("Device token:",token.token);
       push.saveToken(token);
     });
-    */
 
-    $ionicPush.init({
+
+    //Not working on devices
+    /*$ionicPush.init({
       "debug": true,
       "onNotification": function(notification) {
         var payload = notification.payload;
@@ -44,11 +48,12 @@ angular.module('restaurantApp', ['ionic','ionic.service.core','ionic.service.pus
       },
       "onRegister": function(data) {
         console.log(data.token);
+        pu
       }
     });
 
     $ionicPush.register();
-
+    */
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
