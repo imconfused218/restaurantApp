@@ -7,7 +7,7 @@ angular.module('restaurantApp.controllers', ['restaurantApp.services', 'restaura
 
 //////////////////////////////// Abstract App Controller//////////////////
 
-function AppCtrl ($ionicPopover, $scope, placeService) {
+function AppCtrl ($ionicPopover, $scope, placeService, $ionicModal) {
   var self = this;
   this.placeService = placeService;
 
@@ -17,15 +17,38 @@ function AppCtrl ($ionicPopover, $scope, placeService) {
   }).then(function(popover) {
     self.popover = popover;
   });
+
+  //create modal
+  $ionicModal.fromTemplateUrl('templates/requestBagsMessage.html',{
+    scope: $scope
+  }).then(function(modal){
+    self.modal = modal;
+  });
+
+  //For cleaning up the help modal from the DOM
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+
+
 }
 
 /**
  * Requests more bags
  */
 AppCtrl.prototype.requestMoreBags = function () {
+  var self = this;
   return this.placeService.requestMoreBags().then(function(result){
+    self.modal.show();
     return result;
   });
+};
+
+/**
+ * for removing the modal
+ */
+AppCtrl.prototype.closeModal = function () {
+  this.modal.remove();
 };
 /**
  * returns currentStatus from place service
@@ -220,6 +243,35 @@ OrdersCtrl.prototype.findTotalItems = function (order) {
   }
   return count;
 };
+
+/**
+ * Takes an order and returns a background color depeding on status and selected
+ * @param{Object} order
+ * @returns{Object}
+ */
+ OrdersCtrl.prototype.getColor = function (order) {
+  if (!order) {return;}
+  if (order === this.selectedOrder) {
+    if (order.status == 'unconfirmed') {
+      return {'background-color': 'hsla(357, 100%, 67%, 1)',
+              'margin-left': '1em'}
+    } else if (order.status == 'confirmed') {
+      return {'background-color': 'hsla(20, 100%, 62%, 1)',
+              'margin-left': '1em'}
+    } else if (order.status == 'ready') {
+      return {'background-color': 'hsla(147, 100%, 37%, 1)',
+              'margin-left': '1em'}
+    }
+  } else {
+    if (order.status == 'unconfirmed') {
+      return {'background-color': 'hsla(357, 100%, 84%, 1)'}
+    } else if (order.status == 'confirmed') {
+      return {'background-color': 'hsla(24, 100%, 75%, 1)'}
+    } else if (order.status == 'ready') {
+      return {'background-color': 'hsla(119, 100%, 79%, 1)'}
+    }
+  }
+ };
 
 /********************************** New Order Controller *****************/
 
