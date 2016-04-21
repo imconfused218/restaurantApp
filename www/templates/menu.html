@@ -9,6 +9,9 @@
         </button>-->
       </ion-nav-buttons>
       <ion-nav-buttons side='right'>
+      <div class='button moreBagsBtn' ng-click='AppCtrl.requestMoreBags()'>
+        <i class='ion-bag'></i> Need More Bags
+      </div>
        <div class='button restaurantStatus' ng-click='AppCtrl.popover.show($event)'>
           <div ng-switch='AppCtrl.currentStatus()'>
             <div ng-switch-when='Open'><i class='ion-ios-sunny'></i>  Available for Orders</div>

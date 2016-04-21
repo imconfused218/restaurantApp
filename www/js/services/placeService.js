@@ -43,3 +43,15 @@ PlaceService.prototype.postStatus = function (status) {
 		return result;
 	});
 };
+
+PlaceService.prototype.requestMoreBags = function () {
+
+	var place_id = JSON.parse(this.$window.localStorage.getItem('place_id')) || this.logInService.place_id || 5;
+
+	var placeUrl = "foodcannon/api/1/place/" + place_id + "/bags/";
+
+	return this.apiService.post(placeUrl).then(function(result){
+		return result;
+	})
+
+};

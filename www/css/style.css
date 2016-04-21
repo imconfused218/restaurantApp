@@ -97,11 +97,19 @@
 
 .statusPopoverContainer {
 	border-radius: 10px;
+	height: 8em;
+	width: 15em;
 }
 
 .statusPopoverContainer .list .openStatus {
 	font-family: 'Open Sans', sans-serif;
-	color: hsla(122, 100%, 70%, 1);
+	color: hsla(122, 100%, 20%, 1);
+	font-size: 1.1em;
+}
+
+.statusPopoverContainer .list .closedStatus {
+	font-family: 'Open Sans', sans-serif;
+	color: hsla(350, 100%, 36%, 1);
 	font-size: 1.1em;
 }
 
@@ -182,10 +190,17 @@
   margin-top: 1em;
 }
 
+.moreBagsBtn.button {
+	margin-right: 1em;
+	font-size: 1em;
+	color: orange;
+}
+
 div.button.restaurantStatus {
 	font-family: 'Open Sans', sans-serif;
 	color: hsla(122, 100%, 70%, 1);
 	font-size: 1.1em;
+	margin-top: -0.05em;
 }
 
 .restaurantStatus i {
@@ -323,17 +338,19 @@ div.button.restaurantStatus {
 
 
 .itemQuant, .quantTotal {
-	padding-top: 1em;
+	padding-top: 0.5em;
 	font-family: 'Open Sans', sans-serif;
-	font-size: 1.9em;
+	font-size: 2em;
 	color: #111;
 	font-weight: 600;
-	padding-right: 1em;
 }
 
-.itemQuant div {
-	background-color: #999;
-	padding: 0.2em;
+.itemQuant div{
+	padding: 0.4em;
+	margin-right: 0.5em;
+	border: solid 1px #888;
+	border-radius: 10px;
+	margin-bottom:;
 }
 
 .itemPrice {
@@ -349,10 +366,10 @@ div.button.restaurantStatus {
 	padding-right: 40px;
 }
 
-.quantTotalContainer {
+/*.quantTotalContainer {
 	display: flex;
 	flex-direction: row-reverse;
-}
+}*/
 
 .quantTotal {
 	margin-right: 1.7em;

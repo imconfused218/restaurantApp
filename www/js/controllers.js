@@ -20,6 +20,14 @@ function AppCtrl ($ionicPopover, $scope, placeService) {
 }
 
 /**
+ * Requests more bags
+ */
+AppCtrl.prototype.requestMoreBags = function () {
+  return this.placeService.requestMoreBags().then(function(result){
+    return result;
+  });
+};
+/**
  * returns currentStatus from place service
  */
 AppCtrl.prototype.currentStatus = function () {
