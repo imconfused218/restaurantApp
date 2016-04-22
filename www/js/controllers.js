@@ -78,8 +78,8 @@ function LogInCtrl (logInService, $ionicLoading, $window, $state) {
   this.showPlaceIdField = false;
 
   this.logInInfo = {
-    email : "matt@menu.me",
-    password: "handsoff9",
+    email : "",
+    password: "",
     place_id: ""
   }
 }
