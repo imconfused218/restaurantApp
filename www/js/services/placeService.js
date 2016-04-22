@@ -53,5 +53,4 @@ PlaceService.prototype.requestMoreBags = function () {
 	return this.apiService.post(placeUrl).then(function(result){
 		return result;
 	})
-
 };

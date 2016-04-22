@@ -8,8 +8,6 @@ function OrdersService (apiService, logInService, $window, $interval) {
 
 	this.ordersUrl = '';
 	this.orders = {};
-
-	
 }
 
 /**
