@@ -109,7 +109,7 @@ LogInCtrl.prototype.logMeIn = function () {
 };
 
 /////////////////////////////////// Orders Controller//////////////////////////////
-function OrdersCtrl (ordersService, $ionicLoading, $ionicModal, $scope, $interval, $ionicPopover) {
+function OrdersCtrl (ordersService, $ionicLoading, $ionicModal, $scope, $interval, $ionicPopover, $ionicPlatform) {
   var self = this;
   this.ordersService = ordersService;
   this.$ionicModal = $ionicModal;
@@ -117,6 +117,12 @@ function OrdersCtrl (ordersService, $ionicLoading, $ionicModal, $scope, $interva
   this.$interval = $interval;
   this.$ionicPopover = $ionicPopover;
   this.$ionicLoading = $ionicLoading;
+  this.$ionicPlatform = $ionicPlatform;
+
+  //disables back button on orders screen
+  this.$ionicPlatform.registerBackButtonAction(function (event){
+    event.preventDefault();
+  }, 100);
 
 
   this.orderOptionsEnabled = false;
