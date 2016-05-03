@@ -51,12 +51,15 @@
             <div class='orderPickupTime'>Pickup at {{orders.selectedOrder.pickUp}}</div>
           </div>
           <div class='orderInfoDetails'>
-            <div class='itemInfoContainer' ng-repeat='item in orders.selectedOrder.items'>
-              <div class='subItemInfo'>
-                <div class='itemThumbnail'><img ng-src='http:{{item.img}}'/></div>
-                <div class='itemName'> {{item.name}}<span class='itemPrice'>${{item.price}}</span> </div>
+            <div ng-repeat='item in orders.selectedOrder.items'>
+              <div class='itemInfoContainer'>
+                <div class='subItemInfo'>
+                  <div class='itemThumbnail'><img ng-src='http:{{item.img}}'/></div>
+                  <div class='itemName'>{{item.name}}<span class='itemPrice'>${{item.price}}</span><div class='itemMods' ng-repeat='mod in item.mods'>{{mod}}</div></div>
+                </div>
+                <div class='itemQuant'><div>x {{item.quant}}</div></div>
               </div>
-              <div class='itemQuant'><div>x {{item.quant}}</div></div>
+              <div class='itemNotes'>{{item.notes}}</div>
             </div>
             <div class='row'>
               <div class='quantTotalContainer col col-33 col-offset-67'>

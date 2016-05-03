@@ -9,7 +9,7 @@ angular.module('restaurantApp.services', [])
     this.$ionicLoading = $ionicLoading;
     this.$window = $window;
 
-    this.hostUrl = 'https://menu.me/';
+    this.hostUrl = 'https://sandbox.menu.me/';
     this.auth = "Token BC04DM5Q-Qjlzk9SrtoZRCcRvbYYsomuVUuqzO8yHi3vl9jS7sKhBd3bRTl7ELhKwmrfpXeqXQQZC";
 
     this.setHeaders = {

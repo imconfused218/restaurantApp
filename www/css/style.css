@@ -343,6 +343,17 @@ div.button.restaurantStatus {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 18px;
 	color: #444;
+	font-weight: 600;
+}
+
+.itemMods, .itemNotes {
+	font-style:italic;
+	font-weight: 400;
+}
+
+.itemNotes {
+	margin: auto;
+	text-align: center;
 }
 
 .itemQuant, .quantTotal {
