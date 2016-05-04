@@ -7,6 +7,8 @@ function PlaceService (apiService, $window, logInService) {
 	this.logInService = logInService;
 
 	this.currentStatus;
+
+	this.currentPlace;
 }
 
 /**
@@ -23,6 +25,7 @@ PlaceService.prototype.getStatus = function () {
 	return this.apiService.get(placeUrl).then(function(result){
 		console.log('placeResult', result);
 		self.currentStatus = result.status;
+		self.currentPlace = result.name;
 		return result;
 	});
 };
