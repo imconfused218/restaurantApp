@@ -160,7 +160,6 @@
 
 .ordersViewContainer {
 	margin: 0;
-
 }
 
 .ordersTitle {
@@ -352,8 +351,7 @@ div.button.restaurantStatus {
 }
 
 .itemNotes {
-	margin: auto;
-	text-align: center;
+	color: hsla(357, 100%, 74%, 1);
 }
 
 .itemQuant, .quantTotal {
