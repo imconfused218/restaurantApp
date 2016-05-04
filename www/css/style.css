@@ -281,7 +281,6 @@ div.button.restaurantStatus {
 .orderViewContainer {
 	width: 90%;
 	margin-right: 20em;
-	height: 1000px;
 }
 
 .button.helpButton {
@@ -495,7 +494,7 @@ div.button.restaurantStatus {
 }
 
 .noOrdersViewContainer {
-	height: 1000px;
+	
 }
 
 .noCurrentOrdersBox {

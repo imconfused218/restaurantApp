@@ -109,7 +109,7 @@ LogInCtrl.prototype.logMeIn = function () {
 };
 
 /////////////////////////////////// Orders Controller//////////////////////////////
-function OrdersCtrl (ordersService, $ionicLoading, $ionicModal, $scope, $interval, $ionicPopover, $ionicPlatform) {
+function OrdersCtrl (ordersService, $ionicLoading, $ionicModal, $scope, $interval, $ionicPopover, $ionicPlatform, $window) {
   var self = this;
   this.ordersService = ordersService;
   this.$ionicModal = $ionicModal;
@@ -118,6 +118,7 @@ function OrdersCtrl (ordersService, $ionicLoading, $ionicModal, $scope, $interva
   this.$ionicPopover = $ionicPopover;
   this.$ionicLoading = $ionicLoading;
   this.$ionicPlatform = $ionicPlatform;
+  this.$window = $window;
 
   //disables back button on orders screen
   this.$ionicPlatform.registerBackButtonAction(function (event){
@@ -277,6 +278,16 @@ OrdersCtrl.prototype.findTotalItems = function (order) {
       return {'background-color': 'hsla(119, 100%, 79%, 1)'}
     }
   }
+ };
+
+
+ /**
+  * Gets the viewport size and uses that as the minimium height for the page
+  * @returns{Object} -CSS for the height
+  */
+ OrdersCtrl.prototype.getWindowSize = function () {
+  var height = this.$window.innerHeight;
+  return {"min-height": height}
  };
 
 /********************************** New Order Controller *****************/

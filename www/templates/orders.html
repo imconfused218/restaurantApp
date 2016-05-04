@@ -42,7 +42,7 @@
     	<div class='col col-25 ordersColumn'>
     	</div>
     	<div class='col col-70'>
-        <div class='orderViewContainer' ng-show='orders.selectedOrder'>
+        <div class='orderViewContainer' ng-show='orders.selectedOrder' ng-style='orders.getWindowSize()'>
           <button class='button button-energized helpButton' ng-click='orders.requestHelp(orders.selectedOrder)'>Need Help?</button>
           <button ng-hide='true' class='button button-assertive lateButton'>Need more Time?</button>
       		<div class='orderInfoHeader'>
