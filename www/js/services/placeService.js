@@ -36,9 +36,10 @@ PlaceService.prototype.postStatus = function (status) {
 
 	var place_id = JSON.parse(this.$window.localStorage.getItem('place_id')) || this.logInService.place_id || 5;
 
-	var placeUrl = "foodcannon/api/1/place/" + place_id + "/status/";
+	var placeUrl = "foodcannon/api/1/place/" + place_id + "/status/" + status + "/";
 
 	return this.apiService.post(placeUrl).then(function(result){
+		self.currentStatus = result.status;
 		console.log('placeResult', result);
 		return result;
 	});

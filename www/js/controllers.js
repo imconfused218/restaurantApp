@@ -171,7 +171,6 @@ OrdersCtrl.prototype.requestHelp = function (order) {
   this.$ionicModal.fromTemplateUrl('templates/requestHelpModal.html', {
     scope: this.$scope
   }).then(function(modal){
-    console.log(modal, 'modal');
     self.modal = modal;
     self.modal.show();
   });
