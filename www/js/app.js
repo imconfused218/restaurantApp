@@ -2,29 +2,49 @@
 
 angular.module('restaurantApp', ['ionic','ionic.service.core','ionic.service.push', 'restaurantApp.controllers', 'restaurantApp.services', 'ionic.service.analytics'])
 
-.run(function($window, $ionicPlatform, $ionicSideMenuDelegate, $ionicPush, $state, $ionicAnalytics) {
+.run(function($window, $ionicPlatform, $ionicSideMenuDelegate, $ionicPush, $state, $ionicAnalytics, $ionicLoading) {
   $ionicPlatform.ready(function() {
 
     var self = this;
     this.$window = $window;
+    this.$ioncLoading = $ionicLoading;
 
     //disables sidemenu but not working correctly
     $ionicSideMenuDelegate.canDragContent(false);
 
     //for auto updating 
     var deploy = new Ionic.Deploy();
+
+    /*deploy.setChannel('dev')*/
+
+    deploy.check().then(function(isDeployAvailable) {
+      // isDeployAvailable will be true if there is an update
+      // and false otherwise
+      if (isDeployAvailable) {
+        self.$ioncLoading.show({
+          template: 'Updating..'
+        })
+      }
+    }, function(deployCheckError) {
+      // unable to check for deploy updates
+      self.$ionicLoading.hide();
+    });
+
     deploy.update().then(function(deployResult) {
       // deployResult will be true when successfull and
       // false otherwise
+      self.$ionicLoading.hide();
       console.log('deployResult', deployResult);
     }, function(deployUpdateError) {
       console.log('deployUpDateError', deployUpDateError);
       // fired if we're unable to check for updates or if any 
       // errors have occured.
+      self.$ionicLoading.hide();
     }, function(deployProgress) {
       // this is a progress callback, so it will be called a lot
       // deployProgress will be an Integer representing the current
       // completion percentage.
+      self.$ionicLoading.hide();
     });
 
     //push notification config
@@ -48,24 +68,6 @@ angular.module('restaurantApp', ['ionic','ionic.service.core','ionic.service.pus
       self.$window.localStorage['device_token'] = JSON.stringify(token.token);
       push.saveToken(token);
     });
-
-
-    //Not working on devices
-    /*$ionicPush.init({
-      "debug": true,
-      "onNotification": function(notification) {
-        var payload = notification.payload;
-        console.log(notification, payload);
-        $state.go('newOrderScreen');
-      },
-      "onRegister": function(data) {
-        console.log(data.token);
-        pu
-      }
-    });
-
-    $ionicPush.register();
-    */
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)

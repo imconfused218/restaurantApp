@@ -89,7 +89,7 @@
 	color: #555;
 	background-color: #fff;
 	border-radius: 30px;
-	font-size: 36px;
+	font-size: 2.2em;
 }
 
 
@@ -115,7 +115,6 @@
 
 
 /**************** OrderBox Directive ************/
-/* OrderBox currently not being used as a directive*/
 
 /*** Currently an icon is being used instead *****/
 /*.orderSymbol {
@@ -129,12 +128,8 @@
 
 .orderBoxContainer {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 18px;
-	padding-right: 35px;
-}
-
-.orderBoxContainer .mainRow,.orderBoxContainer .subRow {
-	padding: 0.15em;
+	font-size: 1.1em;
+	padding-right: 2em;
 }
 
 .orderBoxContainer .mainRow {
@@ -143,24 +138,33 @@
 
 .orderBoxContainer .subRow {
 	font-weight: 600;
-	font-size: 20px;
+	font-size: 1.2em;
 	
+}
+
+@media (max-width: 750px) {
+	.orderBoxContainer {
+		font-family: 'Open Sans', sans-serif;
+		font-size: 1em;
+		padding-right: 2em;
+	}
+
+	.orderBoxContainer .subRow {
+		font-size: 1.1em;
+		font-weight: 600;
+	}
 }
 
 
 /**************** Orders View *******************/
 
 .ordersViewContainer {
-	position: fixed;
-	top: 10;
-	right: 0;
-	bottom: 0;
-	left: 0;
+	margin: 0;
 }
 
 .ordersTitle {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 22px;
+	font-size: 1.2em
 }
 
 .restaurantProfileContainer {
@@ -208,16 +212,19 @@ div.button.restaurantStatus {
 }
 
 .ordersColumn {
-	position: relative;
 }
 
 .ordersListContainer {
-	margin-top: -0.69em;
-	margin-left: -0.69em;
+	padding-top: 3.49em;
+	padding-left: 0.69em;
 	background: linear-gradient(to right, #222, #444);
 	font-family: 'Open Sans', sans-serif;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	z-index: 2;
 
-	height: 800px;
 	
 	/*position: absolute;
 	top: 0;
@@ -236,28 +243,28 @@ div.button.restaurantStatus {
 
 .ordersSubHeader {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 20px;
+	font-size: 1.1em;
 	color: white;
-	padding: 0.35em;
+	padding: 0.15em;
 	position: relative;
+	margin-right: 0.4em;
 }
 
 .ordersCount {
 	border-radius: 100%;
 	background-color: darkred;
-	font-size: 14px;
-	width: 20px;
-	height: 20px;
+	font-size: 1em;
+	width: 1.2em;
+	height: 1.2em;
 	text-align: center;
 	position: absolute;
 	top: 0;
 	right: 0;
-	margin-top: 7px;
-	margin-right: 7px;
+	margin-top: 0.2em;
 }
 
 .orderListItem {
-	background-color: hsla(357, 100%, 84%, 1);
+	background-color: #CCC;
 	border-color: #222;
 	padding: 0;
 	border-radius: 5px;
@@ -272,11 +279,12 @@ div.button.restaurantStatus {
 }
 
 .orderViewContainer {
-	position: relative;
+	width: 90%;
+	margin-right: 20em;
 }
 
 .button.helpButton {
-	right: 3em;
+	right: 1.5em;
 	color: #222;
 	font-size: 1.2em;
 	font-family: 'Open Sans', sans-serif;
@@ -333,9 +341,17 @@ div.button.restaurantStatus {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 18px;
 	color: #444;
+	font-weight: 600;
 }
 
+.itemMods, .itemNotes {
+	font-style:italic;
+	font-weight: 400;
+}
 
+.itemNotes {
+	color: hsla(357, 100%, 74%, 1);
+}
 
 .itemQuant, .quantTotal {
 	padding-top: 0.5em;
@@ -350,7 +366,11 @@ div.button.restaurantStatus {
 	margin-right: 0.5em;
 	border: solid 1px #888;
 	border-radius: 10px;
-	margin-bottom:;
+	min-width: 2.3em
+}
+
+.quantTotal {
+	min-width: 7em;
 }
 
 .itemPrice {
@@ -471,6 +491,10 @@ div.button.restaurantStatus {
 	border-radius: 5px;
 	padding: 0.25em;
 	line-height: 1em;
+}
+
+.noOrdersViewContainer {
+	
 }
 
 .noCurrentOrdersBox {

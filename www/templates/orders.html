@@ -1,48 +1,48 @@
 <ion-view view-title='Orders' hide-back-button="true">
   <ion-nav-title>
-    <span class='ordersTitle'>Current Orders</span>
+    <span class='ordersTitle'>{{orders.placeService.currentPlace}}</span>
   </ion-nav-title>
+  <div class='ordersListContainer'>
+    <div class='ordersSubHeader'>
+      <div class='ordersCount'>{{orders.ordersService.orders.unconfirmed.length}}</div>
+       <i class='ion-alert-circled'></i> Needs Confirmation!
+    </div>
+    <div class='ordersListSubContainer'>
+      <ion-list>
+        <ion-item class='orderListItem' ng-repeat='order in orders.ordersService.orders.unconfirmed' ng-click='orders.selectOrder(order)' ng-style='orders.getColor(order)'>
+          <order-box></order-box>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div class='ordersSubHeader'>
+      <i class='ion-fireball'></i> Cooking!
+      <div class='ordersCount' style='background-color: orange'>{{orders.ordersService.orders.confirmed.length}}</div>
+    </div>
+    <div class='ordersListSubContainer'>
+      <ion-list>
+        <ion-item class='orderListItem confirmedList' ng-repeat='order in orders.ordersService.orders.confirmed' ng-click='orders.selectOrder(order)' ng-style='orders.getColor(order)'>
+         <order-box></order-box>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div class='ordersSubHeader'>
+       <i class='ion-checkmark-round'></i> Ready for pick up!
+       <div class='ordersCount' style='background-color: green'>{{orders.ordersService.orders.ready.length}}</div>
+    </div>
+    <div class='ordersListSubContainer'>
+      <ion-list>
+        <ion-item class='orderListItem readyList' ng-repeat='order in orders.ordersService.orders.ready' ng-click='orders.selectOrder(order)' ng-style='orders.getColor(order)'>
+          <order-box></order-box>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
   <ion-content class='ordersViewContainer'>
     <div class='row'>
     	<div class='col col-25 ordersColumn'>
-        <div class='ordersListContainer'>
-          <div class='ordersSubHeader'>
-            <div class='ordersCount'>{{orders.ordersService.orders.unconfirmed.length}}</div>
-             <i class='ion-alert-circled'></i> Needs Confirmation!
-          </div>
-          <div class='ordersListSubContainer'>
-      			<ion-list>
-      				<ion-item class='orderListItem' ng-repeat='order in orders.ordersService.orders.unconfirmed' ng-click='orders.selectOrder(order)'>
-      					<order-box></order-box>
-      				</ion-item>
-            </ion-list>
-          </div>
-          <div class='ordersSubHeader'>
-            <i class='ion-fireball'></i> Cooking!
-            <div class='ordersCount' style='background-color: orange'>{{orders.ordersService.orders.confirmed.length}}</div>
-          </div>
-          <div class='ordersListSubContainer'>
-            <ion-list>
-      				<ion-item class='orderListItem confirmedList' ng-repeat='order in orders.ordersService.orders.confirmed' ng-click='orders.selectOrder(order)'>
-               <order-box></order-box>
-      				</ion-item>
-            </ion-list>
-          </div>
-          <div class='ordersSubHeader'>
-             <i class='ion-checkmark-round'></i> Ready for pick up!
-             <div class='ordersCount' style='background-color: green'>{{orders.ordersService.orders.ready.length}}</div>
-          </div>
-          <div class='ordersListSubContainer'>
-            <ion-list>
-              <ion-item class='orderListItem readyList' ng-repeat='order in orders.ordersService.orders.ready' ng-click='orders.selectOrder(order)'>
-                <order-box></order-box>
-              </ion-item>
-      			</ion-list>
-          </div>
-        </div>
     	</div>
     	<div class='col col-70'>
-        <div class='orderViewContainer' ng-show='orders.selectedOrder'>
+        <div class='orderViewContainer' ng-show='orders.selectedOrder' ng-style='orders.getWindowSize()'>
           <button class='button button-energized helpButton' ng-click='orders.requestHelp(orders.selectedOrder)'>Need Help?</button>
           <button ng-hide='true' class='button button-assertive lateButton'>Need more Time?</button>
       		<div class='orderInfoHeader'>
@@ -51,15 +51,22 @@
             <div class='orderPickupTime'>Pickup at {{orders.selectedOrder.pickUp}}</div>
           </div>
           <div class='orderInfoDetails'>
-            <div class='itemInfoContainer' ng-repeat='item in orders.selectedOrder.items'>
-              <div class='subItemInfo'>
-                <div class='itemThumbnail'><img ng-src='http:{{item.img}}'/></div>
-                <div class='itemName'> {{item.name}}<span class='itemPrice'>${{item.price}}</span> </div>
+            <div ng-repeat='item in orders.selectedOrder.items'>
+              <div class='itemInfoContainer'>
+                <div class='subItemInfo'>
+                  <div class='itemThumbnail'><img ng-src='http:{{item.img}}'/></div>
+                  <div class='itemName'>{{item.name}}<span class='itemPrice'>${{item.price}}</span>
+                    <div class='itemMods' ng-repeat='mod in item.mods'>{{mod}}</div>
+                    <div class='itemNotes'>{{item.notes}}</div>
+                  </div>
+                </div>
+                <div class='itemQuant'><div>x {{item.quant}}</div></div>
               </div>
-              <div class='itemQuant'><div>x {{item.quant}}</div></div>
             </div>
-            <div class='quantTotalContainer col col-33 col-offset-67'>
-              <div class='quantTotal'>Total Items: {{orders.findTotalItems(orders.selectedOrder)}}</div>
+            <div class='row'>
+              <div class='quantTotalContainer col col-33 col-offset-67'>
+                <div class='quantTotal'>Total Items: {{orders.findTotalItems(orders.selectedOrder)}}</div>
+              </div>
             </div>
       	  </div>
           <div class='lineBreak'></div>
