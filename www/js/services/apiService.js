@@ -2,14 +2,15 @@ angular.module('restaurantApp.services', [])
       .service('apiService', ApiService);
 
   /** @ngInject */
-  function ApiService($http, $q, $log, $ionicLoading, $window) {
+  function ApiService($http, $q, $log, $ionicLoading, $window, $ionicPopup) {
     this.$http = $http;
     this.$q = $q;
     this.$log = $log;
     this.$ionicLoading = $ionicLoading;
     this.$window = $window;
+    this.$ionicPopup = $ionicPopup;
 
-    this.hostUrl = 'https://menu.me/';
+    this.hostUrl = 'https://sandbox.menu.me/';
     this.auth = "Token BC04DM5Q-Qjlzk9SrtoZRCcRvbYYsomuVUuqzO8yHi3vl9jS7sKhBd3bRTl7ELhKwmrfpXeqXQQZC";
 
     this.setHeaders = {
@@ -74,6 +75,10 @@ angular.module('restaurantApp.services', [])
       self.$log.info('apiService-response', response)
       return response.data;
     }, function(err) {
+        self.$ionicPopup.alert({
+          title: "error",
+          template: err.data
+        });
         self.$ionicLoading.hide()
         self.$log.info(err, 'err');
       // Do all error handling in one place.

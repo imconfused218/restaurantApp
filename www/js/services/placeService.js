@@ -35,14 +35,14 @@ PlaceService.prototype.getStatus = function () {
  * @returns{Promise<Object>}
  */
 PlaceService.prototype.postStatus = function (status) {
-	var status = status;
+	var self = this;
 
 	var place_id = JSON.parse(this.$window.localStorage.getItem('place_id')) || this.logInService.place_id || 5;
 
 	var placeUrl = "foodcannon/api/1/place/" + place_id + "/status/" + status + "/";
 
 	return this.apiService.post(placeUrl).then(function(result){
-		self.currentStatus = result.status;
+		self.getStatus();
 		console.log('placeResult', result);
 		return result;
 	});
