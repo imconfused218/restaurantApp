@@ -1,8 +1,8 @@
 
 
-angular.module('restaurantApp', ['ionic','ionic.service.core','ionic.service.push', 'restaurantApp.controllers', 'restaurantApp.services', 'ionic.service.analytics'])
+angular.module('restaurantApp', ['ionic','ionic.service.core','ionic.service.push', 'restaurantApp.controllers', 'restaurantApp.services'])
 
-.run(function($window, $ionicPlatform, $ionicSideMenuDelegate, $ionicPush, $state, $ionicAnalytics, $ionicLoading) {
+.run(function($window, $ionicPlatform, $ionicSideMenuDelegate, $ionicPush, $state, $ionicLoading) {
   $ionicPlatform.ready(function() {
 
     var self = this;
@@ -64,7 +64,6 @@ angular.module('restaurantApp', ['ionic','ionic.service.core','ionic.service.pus
     });
 
     push.register(function(token) {
-      console.log("Device token:",token.token);
       self.$window.localStorage['device_token'] = JSON.stringify(token.token);
       push.saveToken(token);
     });
@@ -81,8 +80,6 @@ angular.module('restaurantApp', ['ionic','ionic.service.core','ionic.service.pus
       StatusBar.styleDefault();
     }
 
-    //Register for analytics
-    $ionicAnalytics.register();
   });
 })
 
