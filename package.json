@@ -15,9 +15,10 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
+    "cordova-plugin-dialogs",
+    "cordova-plugin-whitelist",
     "cordova-plugin-device",
     "cordova-plugin-console",
-    "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
@@ -28,7 +29,6 @@
         "SENDER_ID": "428453539662"
       }
     },
-    "cordova-plugin-dialogs",
     "ionic-plugin-deploy"
   ],
   "cordovaPlatforms": [

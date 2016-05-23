@@ -10,7 +10,7 @@ angular.module('restaurantApp.services', [])
     this.$window = $window;
     this.$ionicPopup = $ionicPopup;
 
-    this.hostUrl = 'https://sandbox.menu.me/';
+    this.hostUrl = 'https://menu.me/';
     this.auth = "Token BC04DM5Q-Qjlzk9SrtoZRCcRvbYYsomuVUuqzO8yHi3vl9jS7sKhBd3bRTl7ELhKwmrfpXeqXQQZC";
 
     this.setHeaders = {
@@ -75,6 +75,7 @@ angular.module('restaurantApp.services', [])
       self.$log.info('apiService-response', response)
       return response.data;
     }, function(err) {
+        if (err.status === 422)
         self.$ionicPopup.alert({
           title: "error",
           template: err.data
