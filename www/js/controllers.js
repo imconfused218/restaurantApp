@@ -58,8 +58,10 @@ AppCtrl.prototype.currentStatus = function () {
 };
 
 AppCtrl.prototype.setStatus = function (status) {
+  var self = this;
   this.popover.hide();
-  return this.placeService.postStatus(status).then(function(result){
+  return this.placeService.postStatus(status).then(function(result) {
+    self.currentStatus();
     return result;
   })
 };
