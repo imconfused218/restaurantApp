@@ -15,8 +15,6 @@ angular.module('restaurantApp', ['ionic','ionic.service.core','ionic.service.pus
     //for auto updating 
     var deploy = new Ionic.Deploy();
 
-    /*deploy.setChannel('dev');*/
-
     deploy.check().then(function(isDeployAvailable) {
       // isDeployAvailable will be true if there is an update
       // and false otherwise
